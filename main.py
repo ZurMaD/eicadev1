@@ -46,7 +46,8 @@ try:
     from kivy.uix.screenmanager import ScreenManager,Screen 
     # Para el scheduler
     from kivy.clock import Clock
-    # Para menubar
+    # Para poner botones de mas de 2 
+    from kivy.uix.boxlayout import BoxLayout
     
     # Read and write and other things
     import os
@@ -155,7 +156,7 @@ mensajes_global = {'MSG_0':       'ERROR',
                    'MSG_15':      'Se ha exportado a PDF exitosamente.',
                    'MSG_16':      'Error: Intenta nuevamente.',
                    'MSG_17':      'No se guardó el archivo',
-                   'MSG_18':      'Ventana_Login: Inicio sesión correctamente',
+                   'MSG_18':      'Ventana_login: Inicio sesión correctamente',
                    'MSG_19':      '',
                    'MSG_20':      '',
                    'MSG_21':      '',
@@ -168,6 +169,13 @@ mensajes_global = {'MSG_0':       'ERROR',
 
 class conectar_base_datos:
 
+    _usuarios_tablename='rest.usuarios'
+    _usuarios_col0='idUsuarios'
+    _usuarios_col1='LoginName'
+    _usuarios_col2='PasswordHash'
+    _usuarios_col3='FirstName'
+    _usuarios_col4='LastName'
+
     def __init__(self):
         try:
             self.db = mysql.connector.connect(**configuracion)
@@ -175,19 +183,29 @@ class conectar_base_datos:
         except Exception as e:
             print(conectar_base_datos.__name__+":",e)
     
-    def get_contrasenha(self,usuario):
-        pass
+    def get_contrasenha_encriptada(self,usuario):
+        try:
+            query=('SELECT {} FROM {} WHERE({}="{}")'.format(self._usuarios_col2,
+                                                             self._usuarios_tablename,
+                                                             self._usuarios_col1,
+                                                             usuario))
+            print (self.get_contrasenha_encriptada.__name__+":",query)
+            self.c.execute(query)
+            return self.c.fetchall()
+        except Exception as e:
+            print (self.get_rows.__name__+":",e)
     
     def get_rows(self,search = ""):
         try:
             query=('SELECT {} FROM platos'.format('*'))
+            print (self.get_rows.__name__+":",query)
             self.c.execute(query)
             return self.c.fetchall()
         except Exception as e:
             print (self.get_rows.__name__+":",e)
 
 
-class Ventana_Login(GridLayout):
+class Ventana_login(GridLayout):
     
     def __init__(self,**kwargs):
         super().__init__(**kwargs)
@@ -201,12 +219,15 @@ class Ventana_Login(GridLayout):
         self.contrasenha=TextInput(multiline=False)
         self.add_widget(self.contrasenha)
         
-        self.add_widget(Label(text="Contraseña:"))
-
-        self.boton_iniciar_sesion=Button(text="Iniciar sesion")
+        layout = BoxLayout(orientation='vertical')
+        self.mensaje = Label(text=mensajes_global['MSG_1'])
+        self.boton_iniciar_sesion = Button(text="Iniciar sesion")
         self.boton_iniciar_sesion.bind(on_press=self.iniciar_sesion)
-        self.add_widget(self.boton_iniciar_sesion)
-    
+        layout.add_widget(self.mensaje)
+        layout.add_widget(self.boton_iniciar_sesion)
+        self.add_widget(layout)
+        
+        
     def cambiar_mensaje(self,mensaje):
         self.mensaje.text=mensaje
     
@@ -215,26 +236,57 @@ class Ventana_Login(GridLayout):
         usuario=self.usuario.text
         contrasenha=self.contrasenha.text
         
-        
         print(self.iniciar_sesion.__name__,': {},{}'.format(usuario,contrasenha))
-        info="ga"
         
-        aplicacion.info_page.update_info(info)
+        msj="Cargando...."        
+        aplicacion.Ventana_cargando.update_info(msj)
         #Cambiamos de página
-        aplicacion.screen_manager.current="Info"
-        Clock.schedule_once(self.conectar,1)
+        aplicacion.screen_manager.current="Ventana_cargando"
+        Clock.schedule_once(self.conectar,0.5)
+        
+    def validar_texto(self,u,c):
+        val=(u!='')and(c!='')
+        return val
     
     def conectar(self,_):
         
         usuario=self.usuario.text
         contrasenha=self.contrasenha.text
         print("Conectando")
-        aplicacion.screen_manager.current="Ventana_inicio_gerencia"
         
-        xd=conectar_base_datos()
-        ga=xd.get_rows()
-        aplicacion.Ventana_inicio_gerencia.actualizar_texto(str(ga[0]))
+        
+        if self.validar_texto(usuario,contrasenha)==True:
+            aplicacion.screen_manager.current="Ventana_inicio_gerencia"
+            db=conectar_base_datos()
+            respuesta=db.get_contrasenha_encriptada(usuario)
+            print(self.conectar.__name__+":",respuesta)
+            aplicacion.Ventana_inicio_gerencia.actualizar_texto("Bienvenido")
+            
+            verification = self.check_password(contrasenha.encode('utf-8'), eval(respuesta[0][0]))
+        else:
+            print(self.conectar.__name__+":", mensajes_global['MSG_4'])
+            aplicacion.screen_manager.current="Ventana_login"
 
+
+    def get_hashed_password(self, plain_text_password):
+        """
+        Functions:
+        get_hashed_password
+        check_password
+        From http://bit.ly/2YijKB5
+        """
+        
+        """
+        Hash a password for the first time
+        (Using bcrypt, the salt is saved into the hash itself)
+        """
+        return bcrypt.hashpw(plain_text_password, bcrypt.gensalt())
+
+    def check_password(self, plain_text_password, hashed_password):
+        """
+        Check hashed password. Using bcrypt, the salt is saved into the hash itself
+        """
+        return bcrypt.checkpw(plain_text_password, hashed_password)
 
 class Ventana_inicio_gerencia(GridLayout):
     def __init__(self,**kwargs):
@@ -278,20 +330,20 @@ class ControlVentanas (App):
         
         self.screen_manager=ScreenManager()
         
-               
-        self.login=Ventana_Login()        
-        screen=Screen(name="Connect")
+        # VENTANAS
+        self.login=Ventana_login()        
+        screen=Screen(name="Ventana_login")
         screen.add_widget(self.login)
         self.screen_manager.add_widget(screen)
 
-        self.info_page=Ventana_cargando()
-        #Indicamos que la clase info_page es la ventana
-        screen=Screen(name="Info")
-        screen.add_widget(self.info_page)
+        self.Ventana_cargando=Ventana_cargando()
+        #Indicamos que la clase Ventana_cargando es la ventana
+        screen=Screen(name="Ventana_cargando")
+        screen.add_widget(self.Ventana_cargando)
         self.screen_manager.add_widget(screen)
         
         self.Ventana_inicio_gerencia=Ventana_inicio_gerencia()
-        #Indicamos que la clase info_page es la ventana
+        #Indicamos que la clase Ventana_cargando es la ventana
         screen=Screen(name="Ventana_inicio_gerencia")
         screen.add_widget(self.Ventana_inicio_gerencia)
         self.screen_manager.add_widget(screen)
