@@ -98,26 +98,9 @@ class Login(GridLayout):
         print("Conectando")
         aplicacion.screen_manager.current="Ventana_inicio_gerencia"
         
-    def run_query(self, query, parameters=()):
-
-        try:
-            conn = mysql.connector.connect(**self._config)
-            if conn.is_connected():
-                print('run_query: Conectado a base de datos MySQL')
-            cur = conn.cursor()
-            cur.execute(query, params=parameters)
-            resultado = cur.fetchall()
-            return resultado
-        except mysql.connector.Error as err:
-            if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-                print("run_query: Algo mal con tu usuario y contraseña")
-            elif err.errno == errorcode.ER_BAD_DB_ERROR:
-                print("run_query: No existe la Base de datos")
-            else:
-                print(err)
-        finally:
-            conn.commit()
-            conn.close()
+        xd=conectar_base_datos()
+        ga=xd.get_rows()
+        x=0
 
 class InfoPage(GridLayout):
     
@@ -173,14 +156,19 @@ class ControlVentanas (App):
 class conectar_base_datos:
 
     def __init__(self):
-        self.db = mysql.connector.connect(**configuracion)
-        self.c = self.db.cursor()
-
+        try:
+            self.db = mysql.connector.connect(**configuracion)
+            self.c = self.db.cursor()
+        except Exception as e:
+            print(conectar_base_datos.__name__+":",e)
+            
     def get_rows(self,search = ""):
-        query=('SELECT {} FROM rest'.format('*'))
-        self.c.execute(query)
-        print (self.c.fetchall())
-        return self.c.fetchall()
+        try:
+            query=('SELECT {} FROM platos'.format('*'))
+            self.c.execute(query)
+            return self.c.fetchall()
+        except Exception as e:
+            print (self.get_rows.__name__+":",e)
 
     
 if __name__=="__main__":
