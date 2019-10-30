@@ -1,3 +1,5 @@
+__autor__='zurmad'
+
 version="""
 EICA CONTROL DE INVENTARIO
 Descripción: 
@@ -33,7 +35,9 @@ version_eica="1.0.0"
 try:
     #Genrales
     import kivy
-    from  kivy.app import App  
+    from  kivy.app import App
+    # Corremos la version de kivy
+    kivy.require("1.10.1")  
     # Los labels
     from kivy.uix.label import Label
     # Para el orden de los labels
@@ -48,10 +52,18 @@ try:
     from kivy.clock import Clock
     # Para poner botones de mas de 2 
     from kivy.uix.boxlayout import BoxLayout
+    # Para los archivos .kv
+    from kivy.lang.builder import Builder
+    # Para las pantallas
+    from kivy.uix.widget import Widget 
+    # Cambiar tamaños dinamicamente
+    from kivy.uix.floatlayout import FloatLayout
     
     # Read and write and other things
     import os
     import sys
+    # Para archivos de diseño
+    from os.path import abspath,dirname,join
     
     # Conneccion
     import mysql.connector
@@ -63,10 +75,12 @@ try:
     import bcrypt
     
     print("LIBRERIAS: Se completaron todas correctamente.")
+
 except Exception as e:
+    
     print("Error:",e)
 
-kivy.require("1.10.1")
+
 
 """-------------VARIABLES GLOBALES------------"""
 
@@ -167,6 +181,9 @@ mensajes_global = {'MSG_0':       'ERROR',
                    }
 
 
+#Builder.load_string("ventana_login.kv")
+
+
 class conectar_base_datos:
 
     _usuarios_tablename='rest.usuarios'
@@ -209,25 +226,33 @@ class Ventana_login(GridLayout):
     
     def __init__(self,**kwargs):
         super().__init__(**kwargs)
-        self.cols=2
+        self.cols=1
         
-        self.add_widget(Label(text="Usuario:"))        
+        self.frame=GridLayout()
+        self.frame.cols=2
+        
+        self.frame.add_widget(Label(text="Usuario:"))        
         self.usuario=TextInput(multiline=False)
-        self.add_widget(self.usuario)
+        self.frame.add_widget(self.usuario)
         
-        self.add_widget(Label(text="Contraseña:"))        
+        self.frame.add_widget(Label(text="Contraseña:"))        
         self.contrasenha=TextInput(multiline=False)
-        self.add_widget(self.contrasenha)
+        self.frame.add_widget(self.contrasenha)
         
-        layout = BoxLayout(orientation='vertical')
+        
+        self.frame2=GridLayout(size_hint=(0.25, 0.25))      
+        self.frame2.cols=1
+        
         self.mensaje = Label(text=mensajes_global['MSG_1'])
         self.boton_iniciar_sesion = Button(text="Iniciar sesion")
         self.boton_iniciar_sesion.bind(on_press=self.iniciar_sesion)
-        layout.add_widget(self.mensaje)
-        layout.add_widget(self.boton_iniciar_sesion)
-        self.add_widget(layout)
+        
+        self.frame2.add_widget(self.mensaje)
+        self.frame2.add_widget(self.boton_iniciar_sesion)
         
         
+        self.add_widget(self.frame)
+        self.add_widget(self.frame2)
     def cambiar_mensaje(self,mensaje):
         self.mensaje.text=mensaje
     
@@ -256,13 +281,21 @@ class Ventana_login(GridLayout):
         
         
         if self.validar_texto(usuario,contrasenha)==True:
-            aplicacion.screen_manager.current="Ventana_inicio_gerencia"
+            
             db=conectar_base_datos()
             respuesta=db.get_contrasenha_encriptada(usuario)
             print(self.conectar.__name__+":",respuesta)
             aplicacion.Ventana_inicio_gerencia.actualizar_texto("Bienvenido")
             
             verification = self.check_password(contrasenha.encode('utf-8'), eval(respuesta[0][0]))
+            
+            if verification:
+            
+                aplicacion.screen_manager.current="Ventana_inicio_gerencia"
+            else:
+                aplicacion.screen_manager.current="Ventana_login"
+                print(self.conectar.__name__+":",mensajes_global['MSG_4'])
+                
         else:
             print(self.conectar.__name__+":", mensajes_global['MSG_4'])
             aplicacion.screen_manager.current="Ventana_login"
@@ -287,6 +320,7 @@ class Ventana_login(GridLayout):
         Check hashed password. Using bcrypt, the salt is saved into the hash itself
         """
         return bcrypt.checkpw(plain_text_password, hashed_password)
+
 
 class Ventana_inicio_gerencia(GridLayout):
     def __init__(self,**kwargs):
@@ -330,6 +364,7 @@ class ControlVentanas (App):
         
         self.screen_manager=ScreenManager()
         
+        
         # VENTANAS
         self.login=Ventana_login()        
         screen=Screen(name="Ventana_login")
@@ -347,12 +382,15 @@ class ControlVentanas (App):
         screen=Screen(name="Ventana_inicio_gerencia")
         screen.add_widget(self.Ventana_inicio_gerencia)
         self.screen_manager.add_widget(screen)
-    
+        
+        
         return self.screen_manager
 
 
  
 if __name__=="__main__":
+    
+
     aplicacion=ControlVentanas()
     aplicacion.run()
 
