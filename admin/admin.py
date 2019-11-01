@@ -11,8 +11,8 @@ Se usa Mysql en la nube, las credenciales están más abajo
 Autor:              Pablo Díaz
 Github:             github.com/zurmad
 Correo:             pablo.diazv@pucp.edu.pe
-Ult. Modificacion:  01/11/19
-Versión:            v1.0.0
+Ult. Modificacion:  02/11/19
+Versión:            v0.1.0
 
 
 Los cambios se modifican en:
@@ -62,6 +62,9 @@ try:
     # Encriptación
     import bcrypt
     
+    # Abrir enlaces de ayuda
+    import webbrowser
+    
     print("LIBRERIAS: Se completaron todas correctamente.")
 
 except Exception as e:
@@ -94,12 +97,15 @@ class ventana(BoxLayout):
     def __init__(self,**kwargs):
         super().__init__(**kwargs)
         
+    
+    def ayuda(self):
+        webbrowser.open('http://www.google.com')
 
-class Ventana_inicio_gerencia(App):
+class admin(App):
     def build(self):
         return ventana()
 
 
 if __name__ == "__main__":
-    aplicacion=Ventana_inicio_gerencia()
+    aplicacion=admin()
     aplicacion.run()

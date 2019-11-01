@@ -12,7 +12,7 @@ Autor:              Pablo Díaz
 Github:             github.com/zurmad
 Correo:             pablo.diazv@pucp.edu.pe
 Ult. Modificacion:  30/10/19
-Versión:            v1.0.0
+Versión:            v0.1.0
 
 
 Los cambios se modifican en:
@@ -20,7 +20,7 @@ https://trello.com/b/xdE3hSr0/eica
 
 """
 
-version_eica="1.0.0"
+version_eica="0.1.0"
 
 # Install python 3.7
 # pip install mysql-connector 
