@@ -1,0 +1,35 @@
+#:kivy 1.11.1
+
+<FlatButton@ButtonBehavior+Label>:
+    font_size:14
+
+<ventana>:
+    id: ventana_inicio
+    orientation:'vertical'
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        id:header
+        orientation:'vertical'
+        size_hint_y:None
+        height:40
+        canvas.before:
+            Color:
+                rgba: (0.06,0.45,0.45,1)
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Label:
+            id: txt
+            text:'Silver POS'
+            size_hint_x:0.9
+            bold:True
+            color:(1,1,1,1)
+        Button:
+            id:boton_loggedin
+            text:'jdoe'
+            color:(1,1,1,1)

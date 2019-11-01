@@ -11,7 +11,7 @@ Se usa Mysql en la nube, las credenciales están más abajo
 Autor:              Pablo Díaz
 Github:             github.com/zurmad
 Correo:             pablo.diazv@pucp.edu.pe
-Ult. Modificacion:  28/10/19
+Ult. Modificacion:  30/10/19
 Versión:            v1.0.0
 
 
@@ -33,11 +33,11 @@ version_eica="1.0.0"
 
 
 try:
-    #Genrales
+    #Generales
     import kivy
     from  kivy.app import App
     # Corremos la version de kivy
-    kivy.require("1.10.1")  
+    kivy.require("1.11.1")  
     # Los labels
     from kivy.uix.label import Label
     # Para el orden de los labels
@@ -222,84 +222,80 @@ class conectar_base_datos:
             print (self.get_rows.__name__+":",e)
 
 
-class Ventana_login(GridLayout):
+class Ventana_login(BoxLayout):
     
-    def __init__(self,**kwargs):
+    def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        self.cols=1
         
-        self.frame=GridLayout()
-        self.frame.cols=2
+    def iniciar_sesion(self):
         
-        self.frame.add_widget(Label(text="Usuario:"))        
-        self.usuario=TextInput(multiline=False)
-        self.frame.add_widget(self.usuario)
+        # Get the texts
+        usuario=self.ids.usuario
+        contrasenha=self.ids.contrasenha
+        self.mensaje_login=self.ids.mensaje
         
-        self.frame.add_widget(Label(text="Contraseña:"))        
-        self.contrasenha=TextInput(multiline=False)
-        self.frame.add_widget(self.contrasenha)
+        u=usuario.text
+        c=contrasenha.text
+        print(self.iniciar_sesion.__name__,': {}'.format("Inicializando"))
         
+        print(self.iniciar_sesion.__name__,': usuario: {}, contraseña:{}'.format(u,
+                                                            c))
         
-        self.frame2=GridLayout(size_hint=(0.25, 0.25))      
-        self.frame2.cols=1
+        #Clock.schedule_once(self.conectar,1)
+
+        print(self.iniciar_sesion.__name__,': {}'.format("Finalizando"))
         
-        self.mensaje = Label(text=mensajes_global['MSG_1'])
-        self.boton_iniciar_sesion = Button(text="Iniciar sesion")
-        self.boton_iniciar_sesion.bind(on_press=self.iniciar_sesion)
-        
-        self.frame2.add_widget(self.mensaje)
-        self.frame2.add_widget(self.boton_iniciar_sesion)
-        
-        
-        self.add_widget(self.frame)
-        self.add_widget(self.frame2)
-    def cambiar_mensaje(self,mensaje):
-        self.mensaje.text=mensaje
-    
-    def iniciar_sesion(self,instance):
-        
-        usuario=self.usuario.text
-        contrasenha=self.contrasenha.text
-        
-        print(self.iniciar_sesion.__name__,': {},{}'.format(usuario,contrasenha))
-        
-        msj="Cargando...."        
-        aplicacion.Ventana_cargando.update_info(msj)
-        #Cambiamos de página
-        aplicacion.screen_manager.current="Ventana_cargando"
-        Clock.schedule_once(self.conectar,0.5)
-        
+
+        # aplicacion.screen_manager.current="Ventana_cargando"
+        # Clock.schedule_once(self.conectar,0.5)
+
+
     def validar_texto(self,u,c):
-        val=(u!='')and(c!='')
+        val=((u!='')and(c!=''))
         return val
     
-    def conectar(self,_):
+    def conectar(self):
         
-        usuario=self.usuario.text
-        contrasenha=self.contrasenha.text
-        print("Conectando")
+        usuario=self.ids.usuario
+        contrasenha=self.ids.contrasenha
+        self.mensaje_login=self.ids.mensaje
         
+        u=usuario.text
+        c=contrasenha.text
         
-        if self.validar_texto(usuario,contrasenha)==True:
+        print(self.conectar.__name__+": {}".format("Inicializando")) 
+        
+        if self.validar_texto(u,c)==True:
             
-            db=conectar_base_datos()
-            respuesta=db.get_contrasenha_encriptada(usuario)
-            print(self.conectar.__name__+":",respuesta)
-            aplicacion.Ventana_inicio_gerencia.actualizar_texto("Bienvenido")
+            self.mensaje_login.text='[color=#00FF00]Cargando...[/color]'
             
-            verification = self.check_password(contrasenha.encode('utf-8'), eval(respuesta[0][0]))
-            
-            if verification:
-            
-                aplicacion.screen_manager.current="Ventana_inicio_gerencia"
-            else:
-                aplicacion.screen_manager.current="Ventana_login"
-                print(self.conectar.__name__+":",mensajes_global['MSG_4'])
+            try:
+                db=conectar_base_datos()
+                respuesta=db.get_contrasenha_encriptada(usuario)
+                print(self.conectar.__name__+":",respuesta)
+                #aplicacion.Ventana_inicio_gerencia.actualizar_texto("Bienvenido")
                 
-        else:
-            print(self.conectar.__name__+":", mensajes_global['MSG_4'])
-            aplicacion.screen_manager.current="Ventana_login"
+                verification = self.check_password(contrasenha.encode('utf-8'), eval(respuesta[0][0]))
+                
+                if verification:
+                    aplicacion.screen_manager.current="Ventana_inicio_gerencia"
+                    #Clock.schedule_once(self.siguiente_pagina(),0.5)
+                    pass
+                else:
+                    #aplicacion.screen_manager.current="Ventana_login"
+                    print(self.conectar.__name__+":",mensajes_global['MSG_4'])
 
+            except Exception as e:
+                self.mensaje_login.text=str(e)
+        #print(self.conectar.__name__+":", mensajes_global['MSG_4'])
+        #aplicacion.screen_manager.current="Ventana_login"
+        else:
+            self.mensaje_login.text='[color=#FF0000] Usuario y/o contraseña incorrecto[/color]'
+               
+        print(self.conectar.__name__+": {}".format("Finalizando")) 
+
+    def siguiente_pagina(self):
+        aplicacion.screen_manager.current="Ventana_inicio_gerencia"
 
     def get_hashed_password(self, plain_text_password):
         """
@@ -321,12 +317,13 @@ class Ventana_login(GridLayout):
         """
         return bcrypt.checkpw(plain_text_password, hashed_password)
 
-
-class Ventana_inicio_gerencia(GridLayout):
+     
+class Ventana_inicio_gerencia(BoxLayout):
+    
     def __init__(self,**kwargs):
         super().__init__(**kwargs)
         
-        self.message=Label(
+        self.message=Label(text="gaaa",
                            font_size=20)
         #self.message.bind(width=self.update_text_width)
         self.add_widget(self.message)
