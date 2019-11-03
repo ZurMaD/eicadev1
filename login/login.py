@@ -1,36 +1,18 @@
 __autor__='zurmad'
 
-version="""
-EICA CONTROL DE INVENTARIO
-Descripción: 
-Este programa hace control de inventario mediante el reporte
-de gastos diarios, también muestra ganancias y reportes
-útiles para los gerentes.
-Se usa Mysql en la nube, las credenciales están más abajo
-
-Autor:              Pablo Díaz
-Github:             github.com/zurmad
-Correo:             pablo.diazv@pucp.edu.pe
-Ult. Modificacion:  30/10/19
-Versión:            v0.1.0
-
-
-Los cambios se modifican en:
-https://trello.com/b/xdE3hSr0/eica
-
-"""
-
-version_eica="0.1.0"
-
 # Install python 3.7
 # pip install mysql-connector 
-# pip install kivy #http://bit.ly/2pZQzYd
+# pip install kivy 
+# #http://bit.ly/2pZQzYd
+
 # pip install pandas
 # pip install numpy
 # pip install bcrypt
 # pip install tkcalendar
 # pip install matplotlib
 
+# For navigation bar
+# pip3 install kibymd
 
 try:
     #Generales
@@ -73,6 +55,9 @@ try:
     
     # Encriptación
     import bcrypt
+    
+    # Conectar base de datos
+    from utils.database import conectar_base_datos
     
     print("LIBRERIAS: Se completaron todas correctamente.")
 
@@ -181,45 +166,10 @@ mensajes_global = {'MSG_0':       'ERROR',
                    }
 
 
-#Builder.load_string("ventana_login.kv")
+Builder.load_file("login/login.kv")
 
 
-class conectar_base_datos:
-
-    _usuarios_tablename='rest.usuarios'
-    _usuarios_col0='idUsuarios'
-    _usuarios_col1='LoginName'
-    _usuarios_col2='PasswordHash'
-    _usuarios_col3='FirstName'
-    _usuarios_col4='LastName'
-
-    def __init__(self):
-        try:
-            self.db = mysql.connector.connect(**configuracion)
-            self.c = self.db.cursor()
-        except Exception as e:
-            print(conectar_base_datos.__name__+":",e)
-    
-    def get_contrasenha_encriptada(self,usuario):
-        try:
-            query=('SELECT {} FROM {} WHERE({}="{}")'.format(self._usuarios_col2,
-                                                             self._usuarios_tablename,
-                                                             self._usuarios_col1,
-                                                             usuario))
-            print (self.get_contrasenha_encriptada.__name__+":",query)
-            self.c.execute(query)
-            return self.c.fetchall()
-        except Exception as e:
-            print (self.get_rows.__name__+":",e)
-    
-    def get_rows(self,search = ""):
-        try:
-            query=('SELECT {} FROM platos'.format('*'))
-            print (self.get_rows.__name__+":",query)
-            self.c.execute(query)
-            return self.c.fetchall()
-        except Exception as e:
-            print (self.get_rows.__name__+":",e)
+#class conectar_base_datos:
 
 
 class Ventana_login(BoxLayout):
@@ -242,13 +192,15 @@ class Ventana_login(BoxLayout):
                                                             c))
         
         #Clock.schedule_once(self.conectar,1)
+        db=conectar_base_datos()
+        respuesta=db.get_contrasenha_encriptada('1')
+        print (respuesta)
 
         print(self.iniciar_sesion.__name__,': {}'.format("Finalizando"))
         
 
         # aplicacion.screen_manager.current="Ventana_cargando"
         # Clock.schedule_once(self.conectar,0.5)
-
 
     def validar_texto(self,u,c):
         val=((u!='')and(c!=''))
@@ -317,7 +269,7 @@ class Ventana_login(BoxLayout):
         """
         return bcrypt.checkpw(plain_text_password, hashed_password)
 
-     
+"""    
 class Ventana_inicio_gerencia(BoxLayout):
     
     def __init__(self,**kwargs):
@@ -330,8 +282,8 @@ class Ventana_inicio_gerencia(BoxLayout):
     
     def actualizar_texto(self,mensaje):
         self.message.text=mensaje
-
-
+"""
+"""
 class Ventana_cargando(GridLayout):
     
     def __init__(self,**kwargs):
@@ -351,43 +303,19 @@ class Ventana_cargando(GridLayout):
     
     def update_text_width(self,*_):
         self.message.text_size=(self.message.width*0.9,None)
-
+"""
         
-class ControlVentanas (App):
+class login (App):
     
     def build(self):
         
-        self.title = 'EICA '+version_eica
-        
-        self.screen_manager=ScreenManager()
-        
-        
-        # VENTANAS
-        self.login=Ventana_login()        
-        screen=Screen(name="Ventana_login")
-        screen.add_widget(self.login)
-        self.screen_manager.add_widget(screen)
-
-        self.Ventana_cargando=Ventana_cargando()
-        #Indicamos que la clase Ventana_cargando es la ventana
-        screen=Screen(name="Ventana_cargando")
-        screen.add_widget(self.Ventana_cargando)
-        self.screen_manager.add_widget(screen)
-        
-        self.Ventana_inicio_gerencia=Ventana_inicio_gerencia()
-        #Indicamos que la clase Ventana_cargando es la ventana
-        screen=Screen(name="Ventana_inicio_gerencia")
-        screen.add_widget(self.Ventana_inicio_gerencia)
-        self.screen_manager.add_widget(screen)
-        
-        
-        return self.screen_manager
+        return Ventana_login()
 
 
  
 if __name__=="__main__":
     
 
-    aplicacion=ControlVentanas()
+    aplicacion=login()
     aplicacion.run()
 

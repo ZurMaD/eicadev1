@@ -1,8 +1,25 @@
 __autor__='zurmad'
 
 version="""
+EICA CONTROL DE INVENTARIO
+Descripción: 
+Este programa hace control de inventario mediante el reporte
+de gastos diarios, también muestra ganancias y reportes
+útiles para los gerentes.
+Se usa Mysql en la nube, las credenciales están más abajo
+
+Autor:              Pablo Díaz
+Github:             github.com/zurmad
+Correo:             pablo.diazv@pucp.edu.pe
+Ult. Modificacion:  02/11/19
+Versión:            v0.1.0
+
+
+Los cambios se modifican en:
 https://trello.com/b/xdE3hSr0/eica
+
 """
+
 try:
     # KIVY ----------------------------------------------
     import kivy
@@ -32,7 +49,10 @@ try:
     
     ## KIVY MD  ----------------------------------------------
     # Barra de navegación
-    from kivymd.theming import ThemeManager    
+    from kivymd.theming import ThemeManager
+    
+    
+    
     
     # Read and write and other things ----------------------
     import os
@@ -50,7 +70,8 @@ try:
     import bcrypt
     
     # Abrir enlaces de ayuda  --------------------------------
-    import webbrowser    
+    import webbrowser
+    
     
     print("LIBRERIAS: Se completaron todas correctamente.")
 
@@ -69,23 +90,16 @@ except Exception as e:
 # pip install matplotlib
 
 
-class Ventana_admin(BoxLayout):
-    def __init__(self,**kwargs):
-        super().__init__(**kwargs)
-       
-    def ayuda(self):
-        webbrowser.open('http://www.google.com')
-
-class admin(App):
-    # NavBar
-    theme_cls=ThemeManager()
-    #http://bit.ly/2PzQAga
-    # logos http://bit.ly/36sSPaT
-    
-    def build(self):        
-        return Ventana_admin()
 
 
-if __name__ == "__main__":
-    aplicacion=admin()
-    aplicacion.run()
+"""-------------VARIABLES GLOBALES------------"""
+
+
+configuracion = {'user': 'pc1',
+                 'password': 'pc1',
+                 'host': '104.198.229.44',
+                 'database': 'rest',
+                 'raise_on_warnings': True}
+
+
+
