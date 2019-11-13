@@ -95,11 +95,3 @@ except Exception as e:
 """-------------VARIABLES GLOBALES------------"""
 
 
-configuracion = {'user': 'pc1',
-                 'password': 'pc1',
-                 'host': '104.198.229.44',
-                 'database': 'rest',
-                 'raise_on_warnings': True}
-
-
-

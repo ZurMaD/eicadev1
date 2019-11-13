@@ -1,0 +1,200 @@
+[INFO   ] [Logger      ] Record log in C:\Users\PabloGod\.kivy\logs\kivy_19-11-06_80.txt
+INFO:kivy:[Logger      ] Record log in C:\Users\PabloGod\.kivy\logs\kivy_19-11-06_80.txt
+[INFO   ] [deps        ] Successfully imported "kivy_deps.gstreamer" 0.1.17
+INFO:kivy:[deps        ] Successfully imported "kivy_deps.gstreamer" 0.1.17
+[INFO   ] [deps        ] Successfully imported "kivy_deps.glew" 0.1.12
+INFO:kivy:[deps        ] Successfully imported "kivy_deps.glew" 0.1.12
+[INFO   ] [deps        ] Successfully imported "kivy_deps.sdl2" 0.1.22
+INFO:kivy:[deps        ] Successfully imported "kivy_deps.sdl2" 0.1.22
+[INFO   ] [Kivy        ] v1.11.1
+INFO:kivy:[Kivy        ] v1.11.1
+[INFO   ] [Kivy        ] Installed at "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\__init__.py"
+INFO:kivy:[Kivy        ] Installed at "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\__init__.py"
+[INFO   ] [Python      ] v3.7.3 (v3.7.3:ef4ec6ed12, Mar 25 2019, 21:26:53) [MSC v.1916 32 bit (Intel)]
+INFO:kivy:[Python      ] v3.7.3 (v3.7.3:ef4ec6ed12, Mar 25 2019, 21:26:53) [MSC v.1916 32 bit (Intel)]
+[INFO   ] [Python      ] Interpreter at "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\python.exe"
+INFO:kivy:[Python      ] Interpreter at "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\python.exe"
+[INFO   ] [Factory     ] 184 symbols loaded
+INFO:kivy:[Factory     ] 184 symbols loaded
+[INFO   ] [Image       ] Providers: img_tex, img_dds, img_sdl2, img_pil, img_gif (img_ffpyplayer ignored)
+INFO:kivy:[Image       ] Providers: img_tex, img_dds, img_sdl2, img_pil, img_gif (img_ffpyplayer ignored)
+[INFO   ] [Text        ] Provider: sdl2
+INFO:kivy:[Text        ] Provider: sdl2
+[INFO   ] [KivyMD      ] v0.102.0
+INFO:kivy:[KivyMD      ] v0.102.0
+[INFO   ] [Window      ] Provider: sdl2
+INFO:kivy:[Window      ] Provider: sdl2
+[INFO   ] [GL          ] Using the "OpenGL" graphics system
+INFO:kivy:[GL          ] Using the "OpenGL" graphics system
+[INFO   ] [GL          ] GLEW initialization succeeded
+INFO:kivy:[GL          ] GLEW initialization succeeded
+[INFO   ] [GL          ] Backend used <glew>
+INFO:kivy:[GL          ] Backend used <glew>
+[INFO   ] [GL          ] OpenGL version <b'4.5.0 - Build 24.20.100.6094'>
+INFO:kivy:[GL          ] OpenGL version <b'4.5.0 - Build 24.20.100.6094'>
+[INFO   ] [GL          ] OpenGL vendor <b'Intel'>
+INFO:kivy:[GL          ] OpenGL vendor <b'Intel'>
+[INFO   ] [GL          ] OpenGL renderer <b'Intel(R) HD Graphics 620'>
+INFO:kivy:[GL          ] OpenGL renderer <b'Intel(R) HD Graphics 620'>
+[INFO   ] [GL          ] OpenGL parsed version: 4, 5
+INFO:kivy:[GL          ] OpenGL parsed version: 4, 5
+[INFO   ] [GL          ] Shading version <b'4.50 - Build 24.20.100.6094'>
+INFO:kivy:[GL          ] Shading version <b'4.50 - Build 24.20.100.6094'>
+[INFO   ] [GL          ] Texture max size <16384>
+INFO:kivy:[GL          ] Texture max size <16384>
+[INFO   ] [GL          ] Texture max units <32>
+INFO:kivy:[GL          ] Texture max units <32>
+[INFO   ] [Window      ] auto add sdl2 input provider
+INFO:kivy:[Window      ] auto add sdl2 input provider
+[INFO   ] [Window      ] virtual keyboard not allowed, single mode, not docked
+INFO:kivy:[Window      ] virtual keyboard not allowed, single mode, not docked
+LIBRERIAS: Se completaron todas correctamente.
+LIBRERIAS: Se completaron todas correctamente.
+[INFO   ] [GL          ] NPOT texture support is available
+INFO:kivy:[GL          ] NPOT texture support is available
+LIBRERIAS: Se completaron todas correctamente.
+LIBRERIAS: Se completaron todas correctamente.
+ Traceback (most recent call last):
+WARNING:kivy:stderr: Traceback (most recent call last):
+   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\builder.py", line 249, in create_handler
+WARNING:kivy:stderr:   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\builder.py", line 249, in create_handler
+     return eval(value, idmap), bound_list
+WARNING:kivy:stderr:     return eval(value, idmap), bound_list
+   File "D:\EICA\v0.1.0\eicadev1\login\login.kv", line 44, in <module>
+WARNING:kivy:stderr:   File "D:\EICA\v0.1.0\eicadev1\login\login.kv", line 44, in <module>
+     icon_callback: app.show_password
+WARNING:kivy:stderr:     icon_callback: app.show_password
+   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\parser.py", line 75, in __getattribute__
+WARNING:kivy:stderr:   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\parser.py", line 75, in __getattribute__
+     object.__getattribute__(self, '_ensure_app')()
+WARNING:kivy:stderr:     object.__getattribute__(self, '_ensure_app')()
+   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\parser.py", line 70, in _ensure_app
+WARNING:kivy:stderr:   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\parser.py", line 70, in _ensure_app
+     app.bind(on_stop=lambda instance:
+WARNING:kivy:stderr:     app.bind(on_stop=lambda instance:
+ AttributeError: 'NoneType' object has no attribute 'bind'
+WARNING:kivy:stderr: AttributeError: 'NoneType' object has no attribute 'bind'
+
+WARNING:kivy:stderr:
+ During handling of the above exception, another exception occurred:
+WARNING:kivy:stderr: During handling of the above exception, another exception occurred:
+
+WARNING:kivy:stderr:
+ Traceback (most recent call last):
+WARNING:kivy:stderr: Traceback (most recent call last):
+   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\builder.py", line 692, in _apply_rule
+WARNING:kivy:stderr:   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\builder.py", line 692, in _apply_rule
+     rctx['ids'])
+WARNING:kivy:stderr:     rctx['ids'])
+   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\builder.py", line 254, in create_handler
+WARNING:kivy:stderr:   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\builder.py", line 254, in create_handler
+     cause=tb)
+WARNING:kivy:stderr:     cause=tb)
+ kivy.lang.builder.BuilderException: Parser: File "D:\EICA\v0.1.0\eicadev1\login\login.kv", line 44:
+WARNING:kivy:stderr: kivy.lang.builder.BuilderException: Parser: File "D:\EICA\v0.1.0\eicadev1\login\login.kv", line 44:
+ ...
+WARNING:kivy:stderr: ...
+      42:            icon_right: 'eye-off'
+WARNING:kivy:stderr:      42:            icon_right: 'eye-off'
+      43:            icon_right_dasabled: False
+WARNING:kivy:stderr:      43:            icon_right_dasabled: False
+ >>   44:            icon_callback: app.show_password
+WARNING:kivy:stderr: >>   44:            icon_callback: app.show_password
+      45:            password: True
+WARNING:kivy:stderr:      45:            password: True
+      46:            require_text_error: 'Ingrese contraseÃ±a'
+WARNING:kivy:stderr:      46:            require_text_error: 'Ingrese contraseÃ±a'
+ ...
+WARNING:kivy:stderr: ...
+ AttributeError: 'NoneType' object has no attribute 'bind'
+WARNING:kivy:stderr: AttributeError: 'NoneType' object has no attribute 'bind'
+   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\builder.py", line 249, in create_handler
+WARNING:kivy:stderr:   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\builder.py", line 249, in create_handler
+     return eval(value, idmap), bound_list
+WARNING:kivy:stderr:     return eval(value, idmap), bound_list
+   File "D:\EICA\v0.1.0\eicadev1\login\login.kv", line 44, in <module>
+WARNING:kivy:stderr:   File "D:\EICA\v0.1.0\eicadev1\login\login.kv", line 44, in <module>
+     icon_callback: app.show_password
+WARNING:kivy:stderr:     icon_callback: app.show_password
+   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\parser.py", line 75, in __getattribute__
+WARNING:kivy:stderr:   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\parser.py", line 75, in __getattribute__
+     object.__getattribute__(self, '_ensure_app')()
+WARNING:kivy:stderr:     object.__getattribute__(self, '_ensure_app')()
+   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\parser.py", line 70, in _ensure_app
+WARNING:kivy:stderr:   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\parser.py", line 70, in _ensure_app
+     app.bind(on_stop=lambda instance:
+WARNING:kivy:stderr:     app.bind(on_stop=lambda instance:
+
+WARNING:kivy:stderr:
+
+WARNING:kivy:stderr:
+ During handling of the above exception, another exception occurred:
+WARNING:kivy:stderr: During handling of the above exception, another exception occurred:
+
+WARNING:kivy:stderr:
+ Traceback (most recent call last):
+WARNING:kivy:stderr: Traceback (most recent call last):
+   File "d:/EICA/v0.1.0/eicadev1/main.py", line 98, in <module>
+WARNING:kivy:stderr:   File "d:/EICA/v0.1.0/eicadev1/main.py", line 98, in <module>
+     class gestionar_ventanas(BoxLayout):
+WARNING:kivy:stderr:     class gestionar_ventanas(BoxLayout):
+   File "d:/EICA/v0.1.0/eicadev1/main.py", line 101, in gestionar_ventanas
+WARNING:kivy:stderr:   File "d:/EICA/v0.1.0/eicadev1/main.py", line 101, in gestionar_ventanas
+     login_widget=Ventana_login()
+WARNING:kivy:stderr:     login_widget=Ventana_login()
+   File "d:\EICA\v0.1.0\eicadev1\login\login.py", line 185, in __init__
+WARNING:kivy:stderr:   File "d:\EICA\v0.1.0\eicadev1\login\login.py", line 185, in __init__
+     super().__init__(**kwargs)
+WARNING:kivy:stderr:     super().__init__(**kwargs)
+   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\uix\relativelayout.py", line 265, in __init__
+WARNING:kivy:stderr:   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\uix\relativelayout.py", line 265, in __init__
+     super(RelativeLayout, self).__init__(**kw)
+WARNING:kivy:stderr:     super(RelativeLayout, self).__init__(**kw)
+   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\uix\floatlayout.py", line 65, in __init__
+WARNING:kivy:stderr:   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\uix\floatlayout.py", line 65, in __init__
+     super(FloatLayout, self).__init__(**kwargs)
+WARNING:kivy:stderr:     super(FloatLayout, self).__init__(**kwargs)
+   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\uix\layout.py", line 76, in __init__
+WARNING:kivy:stderr:   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\uix\layout.py", line 76, in __init__
+     super(Layout, self).__init__(**kwargs)
+WARNING:kivy:stderr:     super(Layout, self).__init__(**kwargs)   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\uix\widget.py", line 361, in __init__
+WARNING:kivy:stderr:   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\uix\widget.py", line 361, in __init__     rule_children=rule_children)
+WARNING:kivy:stderr:     rule_children=rule_children)   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\uix\widget.py", line 469, in apply_class_lang_rules
+WARNING:kivy:stderr:   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\uix\widget.py", line 469, in apply_class_lang_rules     rule_children=rule_children)
+WARNING:kivy:stderr:     rule_children=rule_children)   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\builder.py", line 538, in apply
+WARNING:kivy:stderr:   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\builder.py", line 538, in apply     rule_children=rule_children)
+WARNING:kivy:stderr:     rule_children=rule_children)   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\builder.py", line 707, in _apply_rule
+WARNING:kivy:stderr:   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\builder.py", line 707, in _apply_rule     e), cause=tb)
+WARNING:kivy:stderr:     e), cause=tb) kivy.lang.builder.BuilderException: Parser: File "D:\EICA\v0.1.0\eicadev1\login\login.kv", line 44:
+WARNING:kivy:stderr: kivy.lang.builder.BuilderException: Parser: File "D:\EICA\v0.1.0\eicadev1\login\login.kv", line 44: ...
+WARNING:kivy:stderr: ...      42:            icon_right: 'eye-off'
+WARNING:kivy:stderr:      42:            icon_right: 'eye-off'      43:            icon_right_dasabled: False
+WARNING:kivy:stderr:      43:            icon_right_dasabled: False >>   44:            icon_callback: app.show_password
+WARNING:kivy:stderr: >>   44:            icon_callback: app.show_password      45:            password: True
+WARNING:kivy:stderr:      45:            password: True      46:            require_text_error: 'Ingrese contraseÃ±a'
+WARNING:kivy:stderr:      46:            require_text_error: 'Ingrese contraseÃ±a' ...
+WARNING:kivy:stderr: ... BuilderException: Parser: File "D:\EICA\v0.1.0\eicadev1\login\login.kv", line 44:
+WARNING:kivy:stderr: BuilderException: Parser: File "D:\EICA\v0.1.0\eicadev1\login\login.kv", line 44: ...
+WARNING:kivy:stderr: ...      42:            icon_right: 'eye-off'
+WARNING:kivy:stderr:      42:            icon_right: 'eye-off'      43:            icon_right_dasabled: False
+WARNING:kivy:stderr:      43:            icon_right_dasabled: False >>   44:            icon_callback: app.show_password
+WARNING:kivy:stderr: >>   44:            icon_callback: app.show_password      45:            password: True
+WARNING:kivy:stderr:      45:            password: True      46:            require_text_error: 'Ingrese contraseÃ±a'
+WARNING:kivy:stderr:      46:            require_text_error: 'Ingrese contraseÃ±a' ...
+WARNING:kivy:stderr: ... AttributeError: 'NoneType' object has no attribute 'bind'
+WARNING:kivy:stderr: AttributeError: 'NoneType' object has no attribute 'bind'   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\builder.py", line 249, in create_handler
+WARNING:kivy:stderr:   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\builder.py", line 249, in create_handler     return eval(value, idmap), bound_list
+WARNING:kivy:stderr:     return eval(value, idmap), bound_list   File "D:\EICA\v0.1.0\eicadev1\login\login.kv", line 44, in <module>
+WARNING:kivy:stderr:   File "D:\EICA\v0.1.0\eicadev1\login\login.kv", line 44, in <module>     icon_callback: app.show_password
+WARNING:kivy:stderr:     icon_callback: app.show_password   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\parser.py", line 75, in __getattribute__
+WARNING:kivy:stderr:   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\parser.py", line 75, in __getattribute__     object.__getattribute__(self, '_ensure_app')()
+WARNING:kivy:stderr:     object.__getattribute__(self, '_ensure_app')()   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\parser.py", line 70, in _ensure_app
+WARNING:kivy:stderr:   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\parser.py", line 70, in _ensure_app     app.bind(on_stop=lambda instance:
+WARNING:kivy:stderr:     app.bind(on_stop=lambda instance:
+WARNING:kivy:stderr:   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\builder.py", line 692, in _apply_rule
+WARNING:kivy:stderr:   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\builder.py", line 692, in _apply_rule     rctx['ids'])
+WARNING:kivy:stderr:     rctx['ids'])   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\builder.py", line 254, in create_handler
+WARNING:kivy:stderr:   File "C:\Users\PabloGod\AppData\Local\Programs\Python\Python37-32\lib\site-packages\kivy\lang\builder.py", line 254, in create_handler     cause=tb)
+WARNING:kivy:stderr:     cause=tb)
+
+WARNING:kivy:stderr:

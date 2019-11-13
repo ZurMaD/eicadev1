@@ -1,0 +1,60 @@
+#:kivy 1.11.1
+#:set color_shadow [0, 0, 0, .2980392156862745]
+#:set color_lilac [.07058823529411765, .07058823529411765, .14901960784313725, .8]
+
+
+<MyMDTextFieldRound@MDTextFieldRound>:
+    size_hint_x: None
+    normal_color: color_shadow
+    active_color: color_shadow
+    pos_hint: {'center_x': .5}
+
+
+<Example>:
+    canvas:
+        Color:
+            rgba: color_lilac
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_y: None
+        height: self.minimum_height
+        spacing: dp(15)
+        pos_hint: {'center_x': .5, 'center_y': .5}
+
+        MyMDTextFieldRound:
+            icon_type: 'without'
+            hint_text: 'Field with `normal_color`'
+            normal_color: [0, 0, 0, .1]
+
+        MyMDTextFieldRound:
+            icon_type: 'without'
+            hint_text: 'Field without icon'
+
+        MyMDTextFieldRound:
+            icon_type: 'without'
+            hint_text: 'Field with `require_text_error`'
+            require_text_error: 'Field must be not empty!'
+
+        MyMDTextFieldRound:
+            icon_left: 'email'
+            icon_type: 'left'
+            hint_text: 'Field with left icon'
+            
+        MyMDTextFieldRound:
+            icon_left: 'email'
+            icon_right: 'account-box'
+            icon_right_dasabled: True
+            hint_text: 'Field with left and right disabled icons'
+
+        MyMDTextFieldRound:
+            icon_type: 'all'
+            icon_left: 'key-variant'
+            icon_right: 'eye-off'
+            icon_right_dasabled: False
+            icon_callback: app.show_password
+            password: True
+            hint_text: 'Field width type `password = True`'

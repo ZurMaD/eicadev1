@@ -1,0 +1,63 @@
+#:kivy 1.11.1
+
+#:set color_black [0,0,0,0]
+#:set color_shadow [0, 0, 0, .2980392156862745]
+#:set color_no_shadow [0, 0, 0, .2990392156862745]
+#:set color_lilac [.07058823529411765, .07058823529411765, .14901960784313725, .8]
+#:set color_white [1,1,1,1]
+
+<MyMDTextFieldRound@MDTextFieldRound>:
+    size_hint_x: None
+    normal_color: color_shadow
+    active_color: color_no_shadow
+    pos_hint: {'center_x': .5}
+
+
+<Ventana_login>:
+
+    canvas:
+        Color:
+            rgba: color_lilac
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_y: None
+        height: self.minimum_height
+        spacing: dp(15)
+        pos_hint: {'center_x': .5, 'center_y': .5}
+            
+        MyMDTextFieldRound:
+            icon_left: 'email'
+            icon_right: 'account-box'
+            icon_right_dasabled: True
+            require_text_error: 'Ingrese usuario'
+            hint_text: 'Ingrese usuario'
+
+        MyMDTextFieldRound:
+            icon_type: 'all'
+            icon_left: 'key-variant'
+            icon_right: 'eye-off'
+            icon_right_dasabled: False
+            icon_callback: app.show_password
+            password: True
+            require_text_error: 'Ingrese contraseña'
+            hint_text: 'Ingrese contraseña'
+
+        BoxLayout:
+            
+            id: box
+            size_hint: None, None
+            size: self.minimum_size
+            spacing: dp(15)
+            orientation: 'vertical'
+            pos_hint: {'center_x': .5, 'center_y': .5}
+
+            MDFillRoundFlatIconButton:
+                text: "   Ingresar"
+                icon: "account"
+                text_color: color_white
+                md_bg_color: color_shadow
+                on_press:print("ga")

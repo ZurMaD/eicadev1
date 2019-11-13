@@ -11,7 +11,7 @@ Se usa Mysql en la nube, las credenciales están más abajo
 Autor:              Pablo Díaz
 Github:             github.com/zurmad
 Correo:             pablo.diazv@pucp.edu.pe
-Ult. Modificacion:  30/10/19
+Ult. Modificacion:  10/11/19
 Versión:            v0.1.0
 
 
@@ -64,6 +64,11 @@ try:
     # Cambiar tamaños dinamicamente
     from kivy.uix.floatlayout import FloatLayout
     
+    
+    # Para botones interactivos
+    from kivy.factory import Factory
+    from kivymd.theming import ThemeManager
+    
     # Read and write and other things
     import os
     import sys
@@ -83,26 +88,28 @@ try:
     from controlador.controlador import Ventana_ventas
     from login.login import Ventana_login
     from admin.admin import Ventana_admin
+    from utils.database import conectar_base_datos
     
     print("LIBRERIAS: Se completaron todas correctamente.")
 
 except Exception as e:
     
-    print("Error:",e)
+    print("-Error:",e)
 
 class gestionar_ventanas(BoxLayout):
     
     # Add screens to main
     login_widget=Ventana_login()
     admin_widget=Ventana_admin()
-    ventas_widget=Ventana_ventas()    
+    # ventas_widget=Ventana_ventas()    
     
     def __init__(self, **kwargs):        
         super().__init__(**kwargs)
 
         self.ids.screen_login.add_widget(self.login_widget)
-        #self.ids.screen_ventas.add_widget(self.admin_widget)
+        self.ids.screen_ventas.add_widget(self.admin_widget)
         #self.ids.screen_admin.add_widget(self.ventas_widget)        
+        
 
 class main(App):
     def build(self):

@@ -3,7 +3,6 @@
 <FlatButton@ButtonBehavior+Label>:
     font_size:16
 
-
 <Ventana_login>:
     id:ventana_login
     orientation: "vertical"
@@ -39,7 +38,7 @@
 
         orientation:"vertical"
         padding:ventana_login.spacex,10
-        #spacing:20
+        spacing:20
         BoxLayout:
             orientation: "vertical"
             spacing:10
@@ -53,7 +52,7 @@
                 markup:True
                 #size_hint_y:None
                 heigh:20
-
+                color: (0,0,0,1)
             TextInput:
                 id:usuario
                 hint_text: "Usuario"
@@ -65,21 +64,22 @@
                 hint_text:"Contrase\u00F1a".encode('utf8')
                 multiline: False
                 password:True
-                on_text_validate:root.iniciar_sesion()
+                on_text_validate: btn_iniciar_sesion.focus=True
 
         Label:
             id:sp
             size_hint_y:None
-            heigh:20
+            heigh:10
 
         Button:
+            id:btn_iniciar_sesion
             text: "Iniciar sesion"
             size_hint_y:None
             heigh:20
             background_color: (0.06,0.45,0.45,1)
             background_normal: ''
-            on_release:root.iniciar_sesion()
+            on_press: root.iniciar_sesion()
         Label:
-            id:sp2
+            id:sp_x
             size_hint_y:None
-            heigh:20
+            heigh:40
