@@ -73,6 +73,14 @@ class Ventana_admin(BoxLayout):
     def __init__(self,**kwargs):
         super().__init__(**kwargs)
        
+    
+    def cerrar_sesion(self):
+        print (self.cerrar_sesion.__name__+": Inicializado")
+        
+        self.parent.parent.current="screen_login"        
+        
+        print (self.cerrar_sesion.__name__+": Finalizado")
+    
     def ayuda(self):
         webbrowser.open('http://www.google.com')
 
@@ -86,6 +94,13 @@ class admin(App):
         return Ventana_admin()
 
 
+
+try:
+    Builder.load_file("admin/admin.kv")
+except Exception as e:
+    print(e)
+    
+    
 if __name__ == "__main__":
     aplicacion=admin()
     aplicacion.run()

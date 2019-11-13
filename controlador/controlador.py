@@ -152,6 +152,10 @@ class controlador(App):
     def build(self):
         return Ventana_ventas()
 
+try:
+    Builder.load_file("controlador/controlador.kv")
+except Exception as e:
+    print(e)
 
 if __name__ == "__main__":
     aplicacion=controlador()

@@ -146,7 +146,7 @@ class Ventana_login(BoxLayout):
                     print(self.conectar.__name__+": INICIO DE SESIÓN EXITOSO")
                     
                     # aplicacion.screen_manager.current="Ventana_inicio_gerencia"
-                    self.parent.parent.current='screen_ventas'
+                    self.parent.parent.current='screen_admin'
                 else:
                     # aplicacion.screen_manager.current="Ventana_login"
                     print(self.conectar.__name__+": INICIO DE SESIÓN FALLIDO")

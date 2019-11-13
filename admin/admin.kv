@@ -18,7 +18,7 @@
             #logos http://bit.ly/36sSPaT
             id: navegador
             side_panel_width:0.2*self.width # side available
-            drawer_logo: "user.jpg"
+            drawer_logo: "admin/user.jpg"
             NavigationDrawerSubheader:
                 id:info_usuario
                 text: "Administrador 1    01/11/19"
@@ -33,9 +33,7 @@
             NavigationDrawerIconButton:
                 icon: 'logout-variant'
                 text: 'Cerrar sesión'
-                on_release:print("3")
-    
-
+                on_release:root.cerrar_sesion()
         BoxLayout:
             id:cuerpo
             orientation:'vertical'
@@ -69,8 +67,7 @@
                             rgba:(1,1,1,1)
                         Rectangle:
                             size:self.size
-                            pos:self.pos
-                    
+                            pos:self.pos                 
                 
             BoxLayout:
                 id: footer
