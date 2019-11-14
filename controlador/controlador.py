@@ -19,9 +19,8 @@ Los cambios se modifican en:
 https://trello.com/b/xdE3hSr0/eica
 
 """
-
 try:
-    #Generales
+    # KIVY ----------------------------------------------
     import kivy
     from  kivy.app import App
     # Corremos la version de kivy
@@ -47,29 +46,34 @@ try:
     # Cambiar tamaños dinamicamente
     from kivy.uix.floatlayout import FloatLayout
     
-    # Read and write and other things
+    ## KIVY MD  ----------------------------------------------
+    # Barra de navegación
+    from kivymd.theming import ThemeManager    
+    
+    # Read and write and other things ----------------------
     import os
     import sys
     # Para archivos de diseño
     from os.path import abspath,dirname,join
     
-    # Conneccion
+    # Conneccion  --------------------------------------------
     import mysql.connector
     from mysql.connector import (connection)
     from mysql.connector import errorcode
     from mysql.connector import pooling
     
-    # Encriptación
+    # Encriptación  ------------------------------------------
     import bcrypt
     
-    # Abrir enlaces de ayuda
-    import webbrowser
+    # Abrir enlaces de ayuda  --------------------------------
+    import webbrowser    
     
     print("LIBRERIAS: Se completaron todas correctamente.")
 
 except Exception as e:
     
     print("Error:",e)
+
 
 
 # Install python 3.7
@@ -80,8 +84,6 @@ except Exception as e:
 # pip install bcrypt
 # pip install tkcalendar
 # pip install matplotlib
-
-
 
 """-------------VARIABLES GLOBALES------------"""
 
@@ -115,9 +117,6 @@ class Ventana_ventas(BoxLayout):
             detalles.add_widget(price)
             detalles.add_widget(total)
             
-
-            
-            
             pname="Product One"
             pprice=1.00
             pcantidad=str(1)
@@ -149,13 +148,21 @@ class Ventana_ventas(BoxLayout):
         webbrowser.open('http://www.google.com')
 
 class controlador(App):
+    
+    # NavBar
+    theme_cls=ThemeManager()
+    #http://bit.ly/2PzQAga
+    # logos http://bit.ly/36sSPaT
+    
     def build(self):
         return Ventana_ventas()
 
-try:
-    Builder.load_file("controlador/controlador.kv")
-except Exception as e:
-    print(e)
+# try:
+#     Builder.load_file("admin/admin.kv")
+# except Exception as e:
+#     print(e)
+    
+
 
 if __name__ == "__main__":
     aplicacion=controlador()

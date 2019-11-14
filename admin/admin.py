@@ -93,8 +93,6 @@ class admin(App):
     def build(self):        
         return Ventana_admin()
 
-
-
 try:
     Builder.load_file("admin/admin.kv")
 except Exception as e:

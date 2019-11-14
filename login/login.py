@@ -85,7 +85,7 @@ class Ventana_login(BoxLayout):
 
         print(self.iniciar_sesion.__name__, ': usuario: {}, contraseña:{}'.format(u, c))
         
-        Clock.schedule_once(lambda dt:self.conectar(), 3)
+        Clock.schedule_once(lambda dt:self.conectar(), 2)
 
         print(self.iniciar_sesion.__name__, ': {}'.format("Finalizando"))
 
@@ -146,7 +146,7 @@ class Ventana_login(BoxLayout):
                     print(self.conectar.__name__+": INICIO DE SESIÓN EXITOSO")
                     
                     # aplicacion.screen_manager.current="Ventana_inicio_gerencia"
-                    self.parent.parent.current='screen_admin'
+                    #self.parent.parent.current='screen_admin'
                 else:
                     # aplicacion.screen_manager.current="Ventana_login"
                     print(self.conectar.__name__+": INICIO DE SESIÓN FALLIDO")

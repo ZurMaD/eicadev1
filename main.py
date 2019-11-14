@@ -11,7 +11,7 @@ Se usa Mysql en la nube, las credenciales están más abajo
 Autor:              Pablo Díaz
 Github:             github.com/zurmad
 Correo:             pablo.diazv@pucp.edu.pe
-Ult. Modificacion:  13/11/19
+Ult. Modificacion:  14/11/19
 Versión:            v0.1.0
 
 
@@ -99,15 +99,15 @@ class gestionar_ventanas(BoxLayout):
     
     # Add screens to main
     login_widget=Ventana_login()
-    admin_widget=Ventana_admin()
-    ventas_widget=Ventana_ventas()    
+    # admin_widget=Ventana_admin()
+    # ventas_widget=Ventana_ventas()    
     
     def __init__(self, **kwargs):        
         super().__init__(**kwargs)
 
         self.ids.screen_login.add_widget(self.login_widget)
-        self.ids.screen_ventas.add_widget(self.admin_widget)
-        self.ids.screen_admin.add_widget(self.ventas_widget)        
+        # self.ids.screen_ventas.add_widget(self.admin_widget)
+        # self.ids.screen_admin.add_widget(self.ventas_widget)        
         
 
 class main(App):
