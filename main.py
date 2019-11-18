@@ -29,7 +29,6 @@ version_eica="0.1.0"
 # pip install pandas
 # pip install numpy
 # pip install bcrypt
-# pip install tkcalendar
 # pip install matplotlib
 
 # For navigation bar
