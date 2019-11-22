@@ -54,11 +54,11 @@ try:
     from mysql.connector import errorcode
     from mysql.connector import pooling
 
-    # Encriptación
-    import bcrypt
-
     # Conectar base de datos
     from utils import database
+
+    # Encriptación
+    import bcrypt
 
     print("LIBRERIAS: Se completaron todas correctamente.")
 
@@ -137,6 +137,7 @@ class Ventana_login(BoxLayout):
                 print(self.conectar.__name__+":", respuesta)
                 # aplicacion.Ventana_inicio_gerencia.actualizar_texto("Bienvenido")
                 print(c.encode('utf-8'),respuesta[0][0]) #
+                                             
                 verification=True
                 #verification = self.check_password(c.encode('utf-8'), eval(respuesta[0][0]))
 
@@ -146,10 +147,10 @@ class Ventana_login(BoxLayout):
                     """
                     print(self.conectar.__name__+": INICIO DE SESIÓN EXITOSO")
                     
-                    # aplicacion.screen_manager.current="Ventana_inicio_gerencia"
-                    #self.parent.parent.current='screen_admin'
+                    self.parent.parent.current='screen_ventas'
+
                 else:
-                    # aplicacion.screen_manager.current="Ventana_login"
+
                     print(self.conectar.__name__+": INICIO DE SESIÓN FALLIDO")
 
             except Exception as e:

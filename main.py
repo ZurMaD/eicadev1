@@ -107,16 +107,11 @@ class gestionar_ventanas(BoxLayout):
         self.ids.screen_login.add_widget(self.login_widget)
         self.ids.screen_ventas.add_widget(self.admin_widget)
         self.ids.screen_admin.add_widget(self.ventas_widget)        
-        
 
 class main(App):
     theme_cls=ThemeManager()
     def build(self):
         return gestionar_ventanas()
-
-
-
-
 
 if __name__ == "__main__":
     main().run()
