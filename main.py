@@ -11,8 +11,8 @@ Se usa Mysql en la nube, las credenciales están más abajo
 Autor:              Pablo Díaz
 Github:             github.com/zurmad
 Correo:             pablo.diazv@pucp.edu.pe
-Ult. Modificacion:  14/11/19
-Versión:            v0.1.0
+Ult. Modificacion:  22/11/19
+Versión:            1.0.003
 
 
 Los cambios se modifican en:
@@ -20,7 +20,7 @@ https://trello.com/b/xdE3hSr0/eica
 
 """
 
-version_eica="0.1.0"
+version_eica="1.0.003"
 # Install python 3.7
 # pip install mysql-connector 
 # pip install kivy 
@@ -80,7 +80,7 @@ try:
     from mysql.connector import pooling
     
     # Encriptación
-    import bcrypt
+    #import bcrypt
     
     # Local py files
     from login.login import Ventana_login    
@@ -98,25 +98,20 @@ class gestionar_ventanas(BoxLayout):
     
     # Add screens to main
     login_widget=Ventana_login()
-    # admin_widget=Ventana_admin()
-    # ventas_widget=Ventana_ventas()    
+    admin_widget=Ventana_admin()
+    ventas_widget=Ventana_ventas()    
     
     def __init__(self, **kwargs):        
         super().__init__(**kwargs)
 
         self.ids.screen_login.add_widget(self.login_widget)
-        # self.ids.screen_ventas.add_widget(self.admin_widget)
-        # self.ids.screen_admin.add_widget(self.ventas_widget)        
-        
+        self.ids.screen_ventas.add_widget(self.admin_widget)
+        self.ids.screen_admin.add_widget(self.ventas_widget)        
 
 class main(App):
     theme_cls=ThemeManager()
     def build(self):
         return gestionar_ventanas()
-
-
-
-
 
 if __name__ == "__main__":
     main().run()

@@ -157,10 +157,10 @@ class controlador(App):
     def build(self):
         return Ventana_ventas()
 
-# try:
-#     Builder.load_file("admin/admin.kv")
-# except Exception as e:
-#     print(e)
+try:
+    Builder.load_file("admin/admin.kv")
+except Exception as e:
+    print(e)
     
 
 
