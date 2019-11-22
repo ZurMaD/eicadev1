@@ -80,7 +80,7 @@ try:
     from mysql.connector import pooling
     
     # Encriptación
-    import bcrypt
+    #import bcrypt
     
     # Local py files
     from login.login import Ventana_login    
@@ -98,15 +98,15 @@ class gestionar_ventanas(BoxLayout):
     
     # Add screens to main
     login_widget=Ventana_login()
-    # admin_widget=Ventana_admin()
-    # ventas_widget=Ventana_ventas()    
+    admin_widget=Ventana_admin()
+    ventas_widget=Ventana_ventas()    
     
     def __init__(self, **kwargs):        
         super().__init__(**kwargs)
 
         self.ids.screen_login.add_widget(self.login_widget)
-        # self.ids.screen_ventas.add_widget(self.admin_widget)
-        # self.ids.screen_admin.add_widget(self.ventas_widget)        
+        self.ids.screen_ventas.add_widget(self.admin_widget)
+        self.ids.screen_admin.add_widget(self.ventas_widget)        
         
 
 class main(App):
