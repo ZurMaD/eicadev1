@@ -62,7 +62,6 @@ try:
     # Cambiar tamaños dinamicamente
     from kivy.uix.floatlayout import FloatLayout
     
-    
     # Para botones interactivos
     from kivy.factory import Factory
     from kivymd.theming import ThemeManager
@@ -83,9 +82,9 @@ try:
     #import bcrypt
     
     # Local py files
-    from login.login import Ventana_login    
-    from controlador.controlador import Ventana_ventas
-    from admin.admin import Ventana_admin
+    from ventanas.login.login import Ventana_login    
+    from ventanas.controlador.controlador import Ventana_ventas
+    from ventanas.admin.admin import Ventana_admin
     from utils.database import conectar_base_datos
     
     print("LIBRERIAS: Se completaron todas correctamente.")
@@ -98,15 +97,16 @@ class gestionar_ventanas(BoxLayout):
     
     # Add screens to main
     login_widget=Ventana_login()
+    ventas_widget=Ventana_ventas()
     admin_widget=Ventana_admin()
-    ventas_widget=Ventana_ventas()    
     
-    def __init__(self, **kwargs):        
+    def __init__(self, **kwargs):  
+              
         super().__init__(**kwargs)
 
-        self.ids.screen_login.add_widget(self.login_widget)
-        self.ids.screen_ventas.add_widget(self.admin_widget)
-        self.ids.screen_admin.add_widget(self.ventas_widget)        
+        self.ids.ventana_login.add_widget(self.login_widget)
+        self.ids.ventana_controlador_ventas.add_widget(self.ventas_widget)
+        self.ids.ventana_admin_modificar.add_widget(self.admin_widget)
 
 class main(App):
     theme_cls=ThemeManager()
