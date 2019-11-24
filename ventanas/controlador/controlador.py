@@ -143,11 +143,61 @@ class Ventana_ventas(BoxLayout):
         Esta función valida los códigos
         """
         return True
-    
+
+    def actualizar_compras2(self):
+        codigo=self.ids.codigo_producto2.text
+        contenedor_productos=self.ids.productos2
+        
+        if self.validacion_codigo2():
+            detalles=BoxLayout(size_hint_y=None,height=30,pos_hint={'top':1})
+            contenedor_productos.add_widget(detalles)
+            
+            code = Label(text=codigo,size_hint_x=.2,color=(.06,.45,.45,1))
+            name = Label(text='Product One',size_hint_x=.3,color=(.06,.45,.45,1))
+            qty = Label(text='1',size_hint_x=.1,color=(.06,.45,.45,1))
+            disc = Label(text='0.00',size_hint_x=.1,color=(.06,.45,.45,1))
+            price = Label(text='0.00',size_hint_x=.1,color=(.06,.45,.45,1))
+            total = Label(text='0.00',size_hint_x=.2,color=(.06,.45,.45,1))
+            detalles.add_widget(code)
+            detalles.add_widget(name)
+            detalles.add_widget(qty)
+            detalles.add_widget(disc)
+            detalles.add_widget(price)
+            detalles.add_widget(total)
+            
+            pname="Product One"
+            pprice=1.00
+            pcantidad=str(1)
+            
+            self.ids.ultimo_producto_nombre2.text=pname
+            self.ids.ultimo_producto_precio2.text=str(pprice)
+            
+            
+            # Actualizar resumen
+            resumen_preview=self.ids.resumen2
+            temp_text=resumen_preview.text
+            _temp=temp_text.find('`')
+            
+            resumen_venta= '`\n\nTotal\t\t\t\t\t\t\t\t0.00'
+            if _temp>0:
+                temp_text=temp_text[:_temp]
+                
+            
+                
+            resumen_preview.text='\n'.join([temp_text,pname+'\t\tx'+pcantidad+'\t\t'+str(pprice),resumen_venta])
+            
+    def validacion_codigo2(self):
+        """
+        Esta función valida los códigos
+        """
+        return True
+
+
+
+
     def ayuda(self):
         pass
         # webbrowser.open('http://www.google.com')
-
         
     def cerrar_sesion(self):
         print (self.cerrar_sesion.__name__+": Inicializado")

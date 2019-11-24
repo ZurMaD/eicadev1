@@ -246,5 +246,204 @@
                 
                 Screen:
                     name:'screen2'
-                    MDLabel:
-                        text:'Screen2'
+                    BoxLayout:
+                        orientation:'vertical'
+                        canvas.before:
+                            Color:
+                                rgba: (1,1,1,1)
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                        BoxLayout:
+                            id:header2
+                            size_hint_y:None
+                            height:40
+                            canvas.before:
+                                Color:
+                                    rgba: (0.06,0.45,0.45,1)
+                                Rectangle:
+                                    size: self.size
+                                    pos: self.pos
+                            Label:
+                                id: titulo_ventana2
+                                text:'CONTROLADOR - VENTAS'
+                                size_hint_x:0.9
+                                bold:True
+                                color:(1,1,1,1)
+                            # Button:
+                            #     id:boton_loggedin
+                            #     text:'jdoe'
+                            #     color:(1,1,1,1)
+                        BoxLayout:
+                            id: current2
+                            size_hint_y:None
+                            heigh:50
+                            canvas.before:
+                                Color:
+                                    rgba: (1,1,1,1)
+                                Rectangle:
+                                    size: self.size
+                                    pos: self.pos
+                            Button:
+                                text:'Producto actual'
+                                background_normal:''
+                                background_color:(0.06,0.32,0.32,1)
+                                size_hint_x:0.4
+                            Button:
+                                id:ultimo_producto_nombre2
+                                text:'Producto predeterminado'          
+                                background_normal:''
+                                background_color:(0.06,0.4,0.4,1)    
+                            Button:
+                                id:ultimo_producto_precio2
+                                text:'00.00'
+                                background_normal:''
+                                background_color:(0.06,0.65,0.65,1)
+                                size_hint_x:0.2
+
+                        BoxLayout:
+                            padding:5
+                            BoxLayout:
+                                id: product_details2
+                                orientation:'vertical'
+                                size_hint_x:0.8
+                                spacing:5
+                                BoxLayout:
+                                    id: product_labels2
+                                    size_hint_y:None
+                                    height:20
+                                    canvas.before:
+                                        Color:
+                                            rgba: (0.06,0.45,0.45,1)
+                                        Rectangle:
+                                            size: self.size
+                                            pos: self.pos
+
+                                    FlatButton:
+                                        text:'Cant.'
+                                        size_hint_x:0.1
+                                    FlatButton:
+                                        text:"Código de producto"
+                                        size_hint_x:0.3
+                                    FlatButton:
+                                        text:'Desc.'
+                                        size_hint_x:0.1
+                                    FlatButton:
+                                        text:'Desc. %'
+                                        size_hint_x:0.1
+                                    FlatButton:
+                                        text:'IVA'
+                                        size_hint_x:0.1
+                                    FlatButton:
+                                        text:'Precio'
+                                        size_hint_x:0.1
+                                    FlatButton:
+                                        text:'Precio total'
+                                        size_hint_x:0.2
+                                BoxLayout:
+                                    id: producto_entradas2
+                                    size_hint_y: None
+                                    height:30
+                                    
+                                    TextInput:
+                                        id: cantidad_producto2
+                                        size_hint_x: 0.1
+                                        multiline: False
+                                    TextInput:
+                                        id: codigo_producto2
+                                        size_hint_x: 0.3
+                                        multiline: False
+                                        on_text_validate: root.actualizar_compras2() #agregar ventas
+                                    TextInput:
+                                        id: descuento_producto2
+                                        size_hint_x: 0.1
+                                        multiline: False
+                                    TextInput:
+                                        id: descuento_porcentaje_producto2
+                                        size_hint_x: 0.1
+                                        multiline: False
+                                    TextInput:
+                                        id: iva_producto2
+                                        size_hint_x: 0.1
+                                        multiline: False
+                                    TextInput:
+                                        id: precio_producto2
+                                        size_hint_x: 0.1
+                                        multiline: False
+                                    TextInput:
+                                        id:precio_total_producto2
+                                        size_hint_x: 0.2
+                                        multiline: False
+                                BoxLayout:
+                                    id: agregar_carro2
+                                    orientation:'vertical'
+
+                                    BoxLayout:
+                                        size_hint_y:None
+                                        height:20
+                                        spacing:5
+
+                                        canvas.before:
+                                            Color:
+                                                rgba: (0.06,0.45,0.45,1)
+                                            Rectangle:
+                                                size: self.size
+                                                pos: self.pos
+                                        Label:
+                                            text: 'Cod.'
+                                            size_hint_x:0.2
+                                        Label:
+                                            text:'Producto'
+                                            size_hint_x:0.3
+                                        Label:
+                                            text:'Cant.'
+                                            size_hint_x:0.1
+                                        Label:
+                                            text:'Desc.'
+                                            size_hint_x:0.1
+                                        Label:
+                                            text:'Precio'
+                                            size_hint_x:0.1
+                                        Label:
+                                            text:'Precio total'
+                                            size_hint_x:0.2
+                                    GridLayout:
+                                        id:productos2
+                                        cols:1
+                            BoxLayout:
+                                id: preview2
+                                orientation:'vertical'
+                                size_hint_x:0.2
+
+                                TextInput:
+                                    font_size:12
+                                    id: resumen2
+                                    readonly: True
+                                    text: 'Restaurante Isla de Canrash\n123 Canrash, Huari, Ancash\n\nCel.: 943-847-528\nBoleta Nro: \Día: \n\n'
+                        BoxLayout:
+                            id:footer2
+                            size_hint_y:None
+                            height:30
+                            canvas.before:
+                                Color:
+                                    rgba: (0.06,0.47,0.47,1)
+                                Rectangle:
+                                    size: self.size
+                                    pos: self.pos
+                            Button:
+                                background_normal:''
+                                background_color:(0.06,0.47,0.47,1)
+                                on_release: self.background_color = (0.06,0.32,0.32,1)
+                                text:'Celular de ayuda: 938-438-089 | Click aquí para enviar whatsapp'
+                                on_press:root.ayuda2()
+                Screen:
+                    name:'screen3'
+                    BoxLayout:
+                        orientation:'vertical'
+                        canvas.before:
+                            Color:
+                                rgba: (1,1,1,1)
+                            Rectangle:
+                                size: self.size
+                                pos: self.pos
+                                                
