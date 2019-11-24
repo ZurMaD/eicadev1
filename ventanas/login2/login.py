@@ -109,7 +109,7 @@ class Ventana_login(BoxLayout):
 
         print(self.iniciar_sesion.__name__, ': usuario: {}, contraseña:{}'.format(u, c))
         
-        Clock.schedule_once(lambda dt:self.conectar(), 3)
+        Clock.schedule_once(lambda dt:self.conectar(), 1.5)
 
         print(self.iniciar_sesion.__name__, ': {}'.format("Finalizando"))
 

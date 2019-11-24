@@ -96,6 +96,7 @@ except Exception as e:
 class gestionar_ventanas(BoxLayout):
     
     # Add screens to main
+    # Add screnss and windows here
     login_widget=Ventana_login()
     ventas_widget=Ventana_ventas()
     admin_widget=Ventana_admin()
@@ -109,6 +110,8 @@ class gestionar_ventanas(BoxLayout):
         self.ids.ventana_admin_modificar.add_widget(self.admin_widget)
 
 class main(App):
+    theme_cls=ThemeManager() # Using kivymd is necessary
+    theme_cls.primary_palette='BlueGray' # same
     def build(self):
         return gestionar_ventanas()
 
