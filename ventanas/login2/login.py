@@ -163,7 +163,7 @@ class Ventana_login(BoxLayout):
                 print(c.encode('utf-8'),respuesta[0][0]) #
                                              
                 verification=True
-                #verification = self.check_password(c.encode('utf-8'), eval(respuesta[0][0]))
+                # verification = self.check_password(c.encode('utf-8'), eval(respuesta[0][0]))
 
                 if verification:
                     """
