@@ -66,7 +66,7 @@ try:
     import bcrypt
     
     # Abrir enlaces de ayuda  --------------------------------
-    import webbrowser    
+    #import webbrowser    
     
     print("LIBRERIAS: Se completaron todas correctamente.")
 
@@ -145,7 +145,16 @@ class Ventana_ventas(BoxLayout):
         return True
     
     def ayuda(self):
-        webbrowser.open('http://www.google.com')
+        pass
+        # webbrowser.open('http://www.google.com')
+
+        
+    def cerrar_sesion(self):
+        print (self.cerrar_sesion.__name__+": Inicializado")
+        
+        self.parent.parent.current="ventana_login"        
+        
+        print (self.cerrar_sesion.__name__+": Finalizado")
 
 class controlador(App):
     

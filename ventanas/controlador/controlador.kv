@@ -25,16 +25,24 @@
                 text: "Administrador 1    01/11/19"
             NavigationDrawerIconButton:
                 icon: 'lock'
-                text:"Ventana 1"
+                text:"Ingresar ventas"
                 on_release:print("1")
             NavigationDrawerIconButton:
                 icon: 'lock'
-                text:"Ventana 2"
+                text:"Ingresar compras"
                 on_release:print("2")
+            NavigationDrawerIconButton:
+                icon: 'lock'
+                text:"Ingresar compras"
+                on_release:print("3")
+            NavigationDrawerIconButton:
+                icon: 'lock'
+                text:"Ingresar compras"
+                on_release:print("4")                                
             NavigationDrawerIconButton:
                 icon: 'logout-variant'
                 text: 'Cerrar sesión'
-                #on_release:root.cerrar_sesion()
+                on_release:root.cerrar_sesion()
         BoxLayout:
             id:cuerpo
             orientation:'vertical'
@@ -49,7 +57,8 @@
                         size: self.size
                         pos: self.pos
                 Label:
-                    text:'Silver POS'
+                    id: titulo_ventana
+                    text:'CONTROLADOR - VENTAS'
                     size_hint_x:0.9
                     bold:True
                     color:(1,1,1,1)

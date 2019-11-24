@@ -82,7 +82,7 @@ try:
     #import bcrypt
     
     # Local py files
-    from ventanas.login.login import Ventana_login    
+    from ventanas.login2.login import Ventana_login    
     from ventanas.controlador.controlador import Ventana_ventas
     from ventanas.admin.admin import Ventana_admin
     from utils.database import conectar_base_datos
@@ -109,7 +109,6 @@ class gestionar_ventanas(BoxLayout):
         self.ids.ventana_admin_modificar.add_widget(self.admin_widget)
 
 class main(App):
-    theme_cls=ThemeManager()
     def build(self):
         return gestionar_ventanas()
 

@@ -125,3 +125,12 @@ dmypy.json
 
 # Buildozer building
 .buildozer/
+
+# Certs
+certs/
+
+# Examples
+ejemplos/
+
+# Unncesary scripts
+scripts_inicializar/
