@@ -12,7 +12,7 @@ __autor__='zurmad'
 # pip install matplotlib
 
 # For navigation bar
-# pip3 install kibymd
+# pip3 install kivymd
 
 try:
     #Generales
@@ -59,21 +59,18 @@ try:
     from mysql.connector import errorcode
     from mysql.connector import pooling
     
-    # Encriptación
-    import bcrypt
-    
     # Conectar base de datos
     from utils.database import conectar_base_datos
-    
+
+    print("-------------------------------BYCRIPT--------------------")
+    # Encriptación
+    import bcrypt
+
     print("LIBRERIAS: Se completaron todas correctamente.")
 
 except Exception as e:
     
     print("Error:",e)
-
-
-
-"""-------------VARIABLES GLOBALES------------"""
 
 class Ventana_login(BoxLayout):
     
@@ -97,6 +94,97 @@ class Ventana_login(BoxLayout):
         field.focus = True
         button.icon = 'eye' if button.icon == 'eye-off' else 'eye-off'
         
+
+    def iniciar_sesion(self):
+
+        print(self.iniciar_sesion.__name__, ': {}'.format("Inicializando"))
+
+        # Get the texts
+        usuario = self.ids.usuario
+        contrasenha = self.ids.contrasenha
+        self.mensaje_login = self.ids.mensaje
+
+        u = usuario.text
+        c = contrasenha.text
+
+        print(self.iniciar_sesion.__name__, ': usuario: {}, contraseña:{}'.format(u, c))
+        
+        Clock.schedule_once(lambda dt:self.conectar(), 3)
+
+        print(self.iniciar_sesion.__name__, ': {}'.format("Finalizando"))
+
+    def validar_texto(self, u, c):
+        val = ((u != '')and(c != ''))
+        return val
+
+
+    def siguiente_pagina(self):
+        aplicacion.screen_manager.current = "Ventana_inicio_gerencia"
+
+    def get_hashed_password(self, plain_text_password):
+        """
+        Functions:
+        get_hashed_password
+        check_password
+        From http://bit.ly/2YijKB5
+        """
+
+        """
+        Hash a password for the first time
+        (Using bcrypt, the salt is saved into the hash itself)
+        """
+        return bcrypt.hashpw(plain_text_password, bcrypt.gensalt())
+
+    def check_password(self, plain_text_password, hashed_password):
+        """
+        Check hashed password. Using bcrypt, the salt is saved into the hash itself
+        """
+        return bcrypt.checkpw(plain_text_password, hashed_password)
+
+    def conectar(self):
+        usuario = self.ids.usuario
+        contrasenha = self.ids.contrasenha
+        self.mensaje_login = self.ids.mensaje
+
+        u = usuario.text
+        c = contrasenha.text
+
+        print(self.conectar.__name__+": {}".format("Inicializando"))
+
+        if self.validar_texto(u, c) == True:
+
+            self.mensaje_login.text = '[color=#00FF00]Cargando...[/color]'
+
+            try:
+                db = conectar_base_datos()
+                respuesta = db.get_contrasenha_encriptada(u)
+                print(self.conectar.__name__+":", respuesta)
+                # aplicacion.Ventana_inicio_gerencia.actualizar_texto("Bienvenido")
+                print(c.encode('utf-8'),respuesta[0][0]) #
+                                             
+                verification=True
+                #verification = self.check_password(c.encode('utf-8'), eval(respuesta[0][0]))
+
+                if verification:
+                    """
+                    Aquí se ha verificado la sesión y se muestra la siguiente ventana
+                    """
+                    print(self.conectar.__name__+": INICIO DE SESIÓN EXITOSO")
+                    
+                    self.parent.parent.current='ventana_controlador_ventas'
+
+                else:
+
+                    print(self.conectar.__name__+": INICIO DE SESIÓN FALLIDO")
+
+            except Exception as e:
+                self.mensaje_login.text = str(e)
+        #print(self.conectar.__name__+":", mensajes_global['MSG_4'])
+        # aplicacion.screen_manager.current="Ventana_login"
+        else:
+            self.mensaje_login.text = '[color=#FF0000] Usuario y/o contraseña incorrecto[/color]'
+
+        print(self.conectar.__name__+": {}".format("Finalizando"))
 
         
 class login (App):

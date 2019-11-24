@@ -134,3 +134,6 @@ ejemplos/
 
 # Unncesary scripts
 scripts_inicializar/
+
+# Vscode
+.vscode/

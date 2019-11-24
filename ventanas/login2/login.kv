@@ -27,15 +27,23 @@
         size_hint_y: None
         spacing: dp(15)
         pos_hint: {'center_x': .5, 'center_y': .5}
-            
+        Label:
+            id: mensaje
+            text:'---------'
+            markup:True
+            #size_hint_y:None
+            heigh:20
+            color: (0.6,0.5,0.5,1)
         MyMDTextFieldRound:
+            id:usuario
             icon_left: 'email'
             icon_right: 'account-box'
             icon_right_dasabled: True
             require_text_error: 'Ingrese usuario'
             hint_text: 'Ingrese usuario'
-
+            on_text_validate:contrasenha.focus=True
         MyMDTextFieldRound:
+            id:contrasenha
             icon_type: 'all'
             icon_left: 'key-variant'
             icon_right: 'eye-off'
@@ -44,7 +52,7 @@
             password: True
             require_text_error: 'Ingrese contraseña'
             hint_text: 'Ingrese contraseña'
-
+            
         BoxLayout:
             
             id: box
@@ -59,4 +67,4 @@
                 icon: "account"
                 text_color: color_white
                 md_bg_color: color_shadow
-                on_press:print("ga")
+                on_press:root.iniciar_sesion()
