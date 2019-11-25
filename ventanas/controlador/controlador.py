@@ -92,7 +92,7 @@ class Ventana_ventas(BoxLayout):
     def __init__(self,**kwargs):
         super().__init__(**kwargs)
         
-        
+        self.items = [f"Item {i}" for i in range(50)]
         self.cart = []
         self.qty = []
         
@@ -191,9 +191,6 @@ class Ventana_ventas(BoxLayout):
         Esta función valida los códigos
         """
         return True
-
-
-
 
     def ayuda(self):
         pass

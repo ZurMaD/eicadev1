@@ -1,0 +1,45 @@
+#:kivy 1.11.1
+#:import hex kivy.utils.get_color_from_hex
+#:set color_black [0,0,0,0]
+#:set color_shadow [0, 0, 0, .2980392156862745]
+#:set color_no_shadow [0, 0, 0, .2990392156862745]
+#:set color_lilac [.07058823529411765, .07058823529411765, .14901960784313725, .8]
+#:set color_white [1,1,1,1]
+
+<MDFillRoundFlatIconButton@MDTextFieldRound>:
+    size_hint_x: None
+    normal_color: color_shadow
+    active_color: color_no_shadow
+    pos_hint: {'center_x': .5}
+
+
+<Ventana_chooser>:
+    id: ventana_chooser
+    canvas:
+        Color:
+            rgba: color_lilac
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_y: None
+        spacing: dp(15)
+        pos_hint: {'center_x': .5, 'center_y': .5}
+        Label:
+            id: mensaje
+            text:'Elige el tipo de usuario!'
+            markup:True
+            #size_hint_y:None
+            heigh:20
+            color: (0.6,0.5,0.5,1)
+            
+        MDFillRoundFlatIconButton:
+            text: "Controlador"
+            icon: "language-python"
+            on_press:root.iniciar_controlador()
+    
+        MDFillRoundFlatIconButton:
+            text: "Administrador"
+            icon: "language-python"
+            on_press:root.iniciar_administrador() 

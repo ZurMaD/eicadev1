@@ -171,7 +171,7 @@ class Ventana_login(BoxLayout):
                     """
                     print(self.conectar.__name__+": INICIO DE SESIÓN EXITOSO")
                     
-                    self.parent.parent.current='ventana_controlador_ventas'
+                    self.parent.parent.current='ventana_chooser'
 
                 else:
 
@@ -190,7 +190,6 @@ class Ventana_login(BoxLayout):
 class login (App):
     # http://bit.ly/2pOTIKD -- KIVY
     theme_cls=ThemeManager()
-    theme_cls.primary_palette='BlueGray'
     
     def build(self):        
         return Ventana_login()

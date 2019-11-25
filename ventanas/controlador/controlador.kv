@@ -33,8 +33,8 @@
                 on_release:screen_manager.current='screen2'
             NavigationDrawerIconButton:
                 icon: 'lock'
-                text:"Ingresar compras"
-                on_release:print("3")
+                text:"Reportes"
+                on_release:screen_manager.current='screen3'
             NavigationDrawerIconButton:
                 icon: 'lock'
                 text:"Ingresar compras"
@@ -43,14 +43,13 @@
                 icon: 'logout-variant'
                 text: 'Cerrar sesión'
                 on_release:root.cerrar_sesion()
+ 
         BoxLayout:
             id:cuerpo
             orientation:'vertical'
 
-
             ScreenManager:
                 id:screen_manager
-
                 Screen:
                     name:'screen1'
                     BoxLayout:
@@ -266,7 +265,7 @@
                                     pos: self.pos
                             Label:
                                 id: titulo_ventana2
-                                text:'CONTROLADOR - VENTAS'
+                                text:'CONTROLADOR - COMPRAS'
                                 size_hint_x:0.9
                                 bold:True
                                 color:(1,1,1,1)

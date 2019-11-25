@@ -82,11 +82,12 @@ try:
     #import bcrypt
     
     # Local py files
+    #VENTANAS
     from ventanas.login2.login import Ventana_login    
     from ventanas.controlador.controlador import Ventana_ventas
     from ventanas.admin.admin import Ventana_admin
-    from utils.database import conectar_base_datos
-    
+    from ventanas.chooser.chooser import Ventana_chooser
+
     print("LIBRERIAS: Se completaron todas correctamente.")
 
 except Exception as e:
@@ -100,6 +101,7 @@ class gestionar_ventanas(BoxLayout):
     login_widget=Ventana_login()
     ventas_widget=Ventana_ventas()
     admin_widget=Ventana_admin()
+    chooser_widget=Ventana_chooser()
     
     def __init__(self, **kwargs):  
               
@@ -108,6 +110,7 @@ class gestionar_ventanas(BoxLayout):
         self.ids.ventana_login.add_widget(self.login_widget)
         self.ids.ventana_controlador_ventas.add_widget(self.ventas_widget)
         self.ids.ventana_admin_modificar.add_widget(self.admin_widget)
+        self.ids.ventana_chooser.add_widget(self.chooser_widget)
 
 class main(App):
     theme_cls=ThemeManager() # Using kivymd is necessary
