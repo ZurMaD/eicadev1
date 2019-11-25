@@ -62,9 +62,16 @@ try:
     from mysql.connector import errorcode
     from mysql.connector import pooling
     
-    # Encriptación  ------------------------------------------
-    import bcrypt
+    # Fechas  ------------------------------------------
+    from datetime import date
+
+    # Ploteo de gráficos
+    import numpy as np
+    import matplotlib.pyplot as plt
     
+    # Mapa
+    from kivy.garden.mapview import MapView,MapMarker
+
     # Abrir enlaces de ayuda  --------------------------------
     #import webbrowser    
     
@@ -95,7 +102,14 @@ class Ventana_ventas(BoxLayout):
         self.items = [f"Item {i}" for i in range(50)]
         self.cart = []
         self.qty = []
+        self.change_info_usuario()
+
+    def change_info_usuario(self):
         
+        info_us= self.ids.info_usuario
+        dat=date.today()
+        info_us.text=('Controlador     '+dat.strftime("%d/%m/%Y"))
+
     def actualizar_compras(self):
         codigo=self.ids.codigo_producto.text
         contenedor_productos=self.ids.productos
@@ -213,10 +227,10 @@ class controlador(App):
     def build(self):
         return Ventana_ventas()
 
-try:
-    Builder.load_file("ventanas/controlador/controlador.kv")
-except Exception as e:
-    print(e)
+# try:
+#     Builder.load_file("ventanas/controlador/controlador.kv")
+# except Exception as e:
+#     print(e)
     
 
 
