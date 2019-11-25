@@ -1,6 +1,6 @@
-__autor__='zurmad'
+__autor__ = 'zurmad'
 
-version="""
+version = """
 EICA CONTROL DE INVENTARIO
 Descripción: 
 Este programa hace control de inventario mediante el reporte
@@ -20,10 +20,10 @@ https://trello.com/b/xdE3hSr0/eica
 
 """
 
-version_eica="1.0.003"
+version_eica = "1.0.003"
 # Install python 3.7
-# pip install mysql-connector 
-# pip install kivy 
+# pip install mysql-connector
+# pip install kivy
 # #http://bit.ly/2pZQzYd
 
 # pip install pandas
@@ -36,11 +36,11 @@ version_eica="1.0.003"
 
 
 try:
-    #Generales
+    # Generales
     import kivy
-    from  kivy.app import App
+    from kivy.app import App
     # Corremos la version de kivy
-    kivy.require("1.11.1")  
+    kivy.require("1.11.1")
     # Los labels
     from kivy.uix.label import Label
     # Para el orden de los labels
@@ -50,40 +50,37 @@ try:
     # Para las entradas de texto
     from kivy.uix.button import Button
     # Para realizar estilos a la pantalla
-    from kivy.uix.screenmanager import ScreenManager,Screen 
+    from kivy.uix.screenmanager import ScreenManager, Screen
     # Para el scheduler
     from kivy.clock import Clock
-    # Para poner botones de mas de 2 
+    # Para poner botones de mas de 2
     from kivy.uix.boxlayout import BoxLayout
     # Para los archivos .kv
     from kivy.lang.builder import Builder
     # Para las pantallas
-    from kivy.uix.widget import Widget 
+    from kivy.uix.widget import Widget
     # Cambiar tamaños dinamicamente
     from kivy.uix.floatlayout import FloatLayout
-    
+
     # Para botones interactivos
     from kivy.factory import Factory
     from kivymd.theming import ThemeManager
-    
+
     # Read and write and other things
     import os
     import sys
     # Para archivos de diseño
-    from os.path import abspath,dirname,join
-    
+    from os.path import abspath, dirname, join
+
     # Conneccion
     import mysql.connector
     from mysql.connector import (connection)
     from mysql.connector import errorcode
     from mysql.connector import pooling
-    
-    # Encriptación
-    #import bcrypt
-    
+
     # Local py files
-    #VENTANAS
-    from ventanas.login2.login import Ventana_login    
+    # VENTANAS
+    from ventanas.login2.login import Ventana_login
     from ventanas.controlador.controlador import Ventana_ventas
     from ventanas.admin.admin import Ventana_admin
     from ventanas.chooser.chooser import Ventana_chooser
@@ -91,32 +88,36 @@ try:
     print("LIBRERIAS: Se completaron todas correctamente.")
 
 except Exception as e:
-    
-    print("-Error:",e)
+
+    print("-Error:", e)
+
 
 class gestionar_ventanas(BoxLayout):
-    
+
     # Add screens to main
     # Add screnss and windows here
-    login_widget=Ventana_login()
-    ventas_widget=Ventana_ventas()
-    admin_widget=Ventana_admin()
-    chooser_widget=Ventana_chooser()
-    
-    def __init__(self, **kwargs):  
-              
+    login_widget = Ventana_login()
+    ventas_widget = Ventana_ventas()
+    admin_widget = Ventana_admin()
+    chooser_widget = Ventana_chooser()
+
+    def __init__(self, **kwargs):
+
         super().__init__(**kwargs)
 
-        self.ids.ventana_login.add_widget(self.login_widget)
-        self.ids.ventana_controlador_ventas.add_widget(self.ventas_widget)
-        self.ids.ventana_admin_modificar.add_widget(self.admin_widget)
-        self.ids.ventana_chooser.add_widget(self.chooser_widget)
+        self.ids.ventana1.add_widget(self.login_widget)
+        self.ids.ventana2.add_widget(self.ventas_widget)
+        self.ids.ventana3.add_widget(self.admin_widget)
+        self.ids.ventana4.add_widget(self.chooser_widget)
+
 
 class main(App):
-    theme_cls=ThemeManager() # Using kivymd is necessary
-    theme_cls.primary_palette='BlueGray' # same
+    theme_cls = ThemeManager()  # Using kivymd is necessary
+    theme_cls.primary_palette = 'BlueGray'  # same
+
     def build(self):
         return gestionar_ventanas()
+
 
 if __name__ == "__main__":
     main().run()

@@ -122,7 +122,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-
+#####################################################################
 # Buildozer building
 .buildozer/
 
@@ -140,3 +140,6 @@ scripts_inicializar/
 
 # Maps
 cache/
+
+# Images
+assets/
