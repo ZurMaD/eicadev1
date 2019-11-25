@@ -1,9 +1,9 @@
 #:kivy 1.11.1
 #:import hex kivy.utils.get_color_from_hex
-#:set color_black [0,0,0,0]
+#:set color_black hex('#000000')
 #:set color_shadow [0, 0, 0, .2980392156862745]
 #:set color_no_shadow [0, 0, 0, .2990392156862745]
-#:set color_lilac [.07058823529411765, .07058823529411765, .14901960784313725, .8]
+#:set color_lilac [.14058823529411765, .14058823529411765, .14901960784313725, 0.9]
 #:set color_white [1,1,1,1]
 
 <MDFillRoundFlatIconButton@MDTextFieldRound>:
@@ -11,7 +11,7 @@
     normal_color: color_shadow
     active_color: color_no_shadow
     pos_hint: {'center_x': .5}
-
+    font_size: 20
 
 <Ventana_chooser>:
     id: ventana_chooser
@@ -28,6 +28,7 @@
         pos_hint: {'center_x': .5, 'center_y': .5}
         Label:
             id: mensaje
+
             text:'Elige el tipo de usuario!'
             markup:True
             #size_hint_y:None
