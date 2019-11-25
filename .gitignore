@@ -137,3 +137,6 @@ scripts_inicializar/
 
 # Vscode
 .vscode/
+
+# Maps
+cache/
