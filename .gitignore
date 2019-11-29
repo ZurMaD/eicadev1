@@ -143,3 +143,6 @@ cache/
 
 # Images
 assets/
+
+# Obsolete
+obsolete/
