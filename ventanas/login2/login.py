@@ -1,8 +1,8 @@
-__autor__='zurmad'
+__autor__ = 'zurmad'
 
 # Install python 3.7
-# pip install mysql-connector 
-# pip install kivy 
+# pip install mysql-connector
+# pip install kivy
 # #http://bit.ly/2pZQzYd
 
 # pip install pandas
@@ -15,11 +15,11 @@ __autor__='zurmad'
 # pip3 install kivymd
 
 try:
-    #Generales
+    # Generales
     import kivy
-    from  kivy.app import App
+    from kivy.app import App
     # Corremos la version de kivy
-    kivy.require("1.11.1")  
+    kivy.require("1.11.1")
     # Los labels
     from kivy.uix.label import Label
     # Para el orden de los labels
@@ -29,36 +29,35 @@ try:
     # Para las entradas de texto
     from kivy.uix.button import Button
     # Para realizar estilos a la pantalla
-    from kivy.uix.screenmanager import ScreenManager,Screen 
-    # Para el scheduler 
+    from kivy.uix.screenmanager import ScreenManager, Screen
+    # Para el scheduler
     # http://bit.ly/36vNJL9
-    from kivy.clock import Clock 
-    # Para poner botones de mas de 2 
+    from kivy.clock import Clock
+    # Para poner botones de mas de 2
     from kivy.uix.boxlayout import BoxLayout
     # Para los archivos .kv
     from kivy.lang.builder import Builder
     # Para las pantallas
-    from kivy.uix.widget import Widget 
+    from kivy.uix.widget import Widget
     # Cambiar tamaños dinamicamente
     from kivy.uix.floatlayout import FloatLayout
-    
+
     # Para botones interactivos
     from kivy.factory import Factory
     from kivymd.theming import ThemeManager
-    
-    
+
     # Read and write and other things
     import os
     import sys
     # Para archivos de diseño
-    from os.path import abspath,dirname,join
-    
+    from os.path import abspath, dirname, join
+
     # Conneccion
     import mysql.connector
     from mysql.connector import (connection)
     from mysql.connector import errorcode
     from mysql.connector import pooling
-    
+
     # Conectar base de datos
     from utils.database import conectar_base_datos
 
@@ -69,15 +68,15 @@ try:
     print("LIBRERIAS: Se completaron todas correctamente.")
 
 except Exception as e:
-    
-    print("Error:",e)
+
+    print("Error:", e)
+
 
 class Ventana_login(BoxLayout):
-    
-       
-    def __init__(self,**kwargs):
+
+    def __init__(self, **kwargs):
         super().__init__(**kwargs)
-        
+
     def show_password(self, field, button):
         """
         Called when you press the right button in the password field
@@ -93,7 +92,6 @@ class Ventana_login(BoxLayout):
         field.password = not field.password
         field.focus = True
         button.icon = 'eye' if button.icon == 'eye-off' else 'eye-off'
-        
 
     def iniciar_sesion(self):
 
@@ -107,16 +105,16 @@ class Ventana_login(BoxLayout):
         u = usuario.text
         c = contrasenha.text
 
-        print(self.iniciar_sesion.__name__, ': usuario: {}, contraseña:{}'.format(u, c))
-        
-        Clock.schedule_once(lambda dt:self.conectar(), 1.5)
+        print(self.iniciar_sesion.__name__,
+              ': usuario: {}, contraseña:{}'.format(u, c))
+
+        Clock.schedule_once(lambda dt: self.conectar(), 2)
 
         print(self.iniciar_sesion.__name__, ': {}'.format("Finalizando"))
 
     def validar_texto(self, u, c):
         val = ((u != '')and(c != ''))
         return val
-
 
     def siguiente_pagina(self):
         aplicacion.screen_manager.current = "Ventana_inicio_gerencia"
@@ -149,20 +147,19 @@ class Ventana_login(BoxLayout):
         u = usuario.text
         c = contrasenha.text
 
-        print(self.conectar.__name__+": {}".format("Inicializando"))
+        print(self.conectar.__name__+': {}'.format("Inicializando"))
 
         if self.validar_texto(u, c) == True:
 
             self.mensaje_login.text = '[color=#00FF00]Cargando...[/color]'
 
             try:
-                db = conectar_base_datos()
-                respuesta = db.get_contrasenha_encriptada(u)
+                respuesta = conectar_base_datos().get_by_user_contrasenha('elio')
                 print(self.conectar.__name__+":", respuesta)
                 # aplicacion.Ventana_inicio_gerencia.actualizar_texto("Bienvenido")
-                print(c.encode('utf-8'),respuesta[0][0]) #
-                                             
-                verification=True
+                print(c.encode('utf-8'), respuesta[0][0])
+
+                verification = True
                 # verification = self.check_password(c.encode('utf-8'), eval(respuesta[0][0]))
 
                 if verification:
@@ -170,8 +167,8 @@ class Ventana_login(BoxLayout):
                     Aquí se ha verificado la sesión y se muestra la siguiente ventana
                     """
                     print(self.conectar.__name__+": INICIO DE SESIÓN EXITOSO")
-                    
-                    self.parent.parent.current='ventana_chooser'
+
+                    self.parent.parent.current = 'ventana_chooser'
 
                 else:
 
@@ -186,12 +183,12 @@ class Ventana_login(BoxLayout):
 
         print(self.conectar.__name__+": {}".format("Finalizando"))
 
-        
+
 class login (App):
     # http://bit.ly/2pOTIKD -- KIVY
-    theme_cls=ThemeManager()
-    
-    def build(self):        
+    theme_cls = ThemeManager()
+
+    def build(self):
         return Ventana_login()
 
 
@@ -200,7 +197,7 @@ try:
 except Exception as e:
     print(e)
 
-if __name__=="__main__":    
+if __name__ == "__main__":
 
-    aplicacion=login()
+    aplicacion = login()
     aplicacion.run()
