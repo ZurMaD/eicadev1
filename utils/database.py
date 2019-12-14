@@ -147,7 +147,7 @@ database_tables_content = {'restaurante.clientes': {0: 'id_cliente',
                                                               },
                            }
 
-# Simplifiyng tablename
+# Simplifiyng table names
 dt = database_tables
 dtc = database_tables_content
 
@@ -169,6 +169,12 @@ class conectar_base_datos():
             return self.c.fetchall()
         except Exception as e:
             print(conectar_base_datos.__name__+":", e)
+            print("Recordatorio: UPDATE retorna None")
+
+        finally:
+            self.db.commit()
+            self.db.close()
+            print('[ DATABASE.PY ][ Conectar_base_datos ]: Cerrando conexión')
 
     # ----------------- CONTRASEÑA ----------------- #
 
@@ -198,6 +204,38 @@ class conectar_base_datos():
 
         return self.ejecutar_query(query)
 
+    def get_by_id_cliente(self, id):
+
+        d = dt[0]
+
+        query = ('SELECT {} FROM {} WHERE {}="{}"'.format('*',
+                                                          d,
+                                                          dtc[d][0],
+                                                          id))
+
+        print(self.get_by_user_contrasenha.__name__+":", query)
+
+        return self.ejecutar_query(query)
+
+    def update_by_id_cliente(self, id, dni_cliente, comentarios_cliente):
+
+        d = dt[0]
+
+        query = ('UPDATE {} SET {}="{}",{}="{}" WHERE ({}="{}")'.format(d,
+                                                                        dtc[d][2],
+                                                                        dni_cliente,
+                                                                        dtc[d][3],
+                                                                        comentarios_cliente,
+                                                                        dtc[d][0],
+                                                                        id))
+
+        print(self.update_by_id_cliente.__name__+":", query)
+
+        return self.ejecutar_query(query)
+
+    def insert_new_cliente(self, personas_id_persona, dni_cliente, comentarios_cliente):
+        pass
+
     # ----------------- COMPRAS ----------------- #
 
     def get_all_compras(self):
@@ -211,6 +249,19 @@ class conectar_base_datos():
 
         return self.ejecutar_query(query)
 
+    def get_by_id_compras(self, id):
+
+        d = dt[1]
+
+        query = ('SELECT {} FROM {} WHERE ({}="{}")'.format('*',
+                                                            d,
+                                                            dtc[d][0],
+                                                            id
+                                                            ))
+
+        print(self.get_by_id_compras.__name__+":", query)
+
+        return self.ejecutar_query(query)
 
     # ----------------- CONTROL FLUJO DE CAJA ----------------- #
 
@@ -222,6 +273,19 @@ class conectar_base_datos():
                                             d))
 
         print(self.get_all_control_flujo_caja.__name__+":", query)
+
+        return self.ejecutar_query(query)
+
+    def get_by_id_control_flujo_caja(self, id):
+
+        d = dt[2]
+
+        query = ('SELECT {} FROM {} WHERE ({}="{}")'.format('*',
+                                                            d,
+                                                            dtc[d][0],
+                                                            id))
+
+        print(self.get_by_id_control_flujo_caja.__name__+":", query)
 
         return self.ejecutar_query(query)
 
@@ -238,6 +302,38 @@ class conectar_base_datos():
 
         return self.ejecutar_query(query)
 
+    def get_by_id_empresas(self, id):
+
+        d = dt[3]
+
+        query = ('SELECT {} FROM {} WHERE ({}="{}")'.format('*',
+                                                            d,
+                                                            dtc[d][0],
+                                                            id))
+
+        print(self.get_by_id_empresas.__name__+":", query)
+
+        return self.ejecutar_query(query)
+
+    def update_all_by_id_empresas(self, id, nuevoRuc, nuevoCorreoEmpresa, nuevoCelularEmpresa):
+
+        d = dt[3]
+
+        query = ('UPDATE {} SET {}="{}",{}="{}",{}="{}" WHERE ({}="{}")'.format(d,
+                                                                                dtc[d][1],
+                                                                                nuevoRuc,
+                                                                                dtc[d][2],
+                                                                                nuevoCorreoEmpresa,
+                                                                                dtc[d][3],
+                                                                                nuevoCelularEmpresa,
+                                                                                dtc[d][0],
+                                                                                id
+                                                                                ))
+
+        print(self.update_all_by_id_empresas.__name__+":", query)
+
+        return self.ejecutar_query(query)
+
     # ----------------- LISTA PLATOS X VENTAS ----------------- #
 
     def get_all_platos_x_ventas(self):
@@ -248,6 +344,20 @@ class conectar_base_datos():
                                             d))
 
         print(self.get_all_platos_x_ventas.__name__+":", query)
+
+        return self.ejecutar_query(query)
+
+    def get_by_id_platos_x_ventas(self, id):
+
+        d = dt[4]
+
+        query = ('SELECT {} FROM {} WHERE ({}="{}")'.format('*',
+                                                            d,
+                                                            dtc[d][0],
+                                                            id
+                                                            ))
+
+        print(self.get_by_id_platos_x_ventas.__name__+":", query)
 
         return self.ejecutar_query(query)
 
@@ -264,6 +374,18 @@ class conectar_base_datos():
 
         return self.ejecutar_query(query)
 
+    def get_by_id_productos_x_compras(self, id):
+
+        d = dt[5]
+
+        query = ('SELECT {} FROM {} WHERE ({}="{}")'.format('*',
+                                                            d,
+                                                            dtc[d][0],
+                                                            id))
+
+        print(self.get_by_id_productos_x_compras.__name__+":", query)
+
+        return self.ejecutar_query(query)
 
     # ----------------- LISTA PRODUCTOS X PLATOS ----------------- #
 
@@ -275,6 +397,20 @@ class conectar_base_datos():
                                             d))
 
         print(self.get_all_productos_x_platos.__name__+":", query)
+
+        return self.ejecutar_query(query)
+
+    def get_by_id_productos_x_platos(self, id):
+
+        d = dt[6]
+
+        query = ('SELECT {} FROM {} WHERE ({}="{}")'.format('*',
+                                                            d,
+                                                            dtc[d][0],
+                                                            id
+                                                            ))
+
+        print(self.get_by_id_productos_x_platos.__name__+":", query)
 
         return self.ejecutar_query(query)
 
@@ -291,9 +427,21 @@ class conectar_base_datos():
 
         return self.ejecutar_query(query)
 
+    def get_by_id_productos_x_ventas(self, id):
+
+        d = dt[7]
+
+        query = ('SELECT {} FROM {} WHERE ({}="{}")'.format('*',
+                                                            d,
+                                                            dtc[d][0],
+                                                            id))
+
+        print(self.get_by_id_productos_x_ventas.__name__+":", query)
+
+        return self.ejecutar_query(query)
 
     # ----------------- PERSONAS ----------------- #
-    
+
     def get_all_personas(self):
 
         d = dt[8]
@@ -302,6 +450,43 @@ class conectar_base_datos():
                                             d))
 
         print(self.get_all_personas.__name__+":", query)
+
+        return self.ejecutar_query(query)
+
+    def get_by_id_persona(self, id):
+
+        d = dt[8]
+
+        query = ('SELECT {} FROM {} WHERE {}="{}"'.format('*',
+                                                          d,
+                                                          dtc[d][0],
+                                                          id))
+
+        print(self.get_by_id_persona.__name__+":", query)
+
+        return self.ejecutar_query(query)
+
+    def update_all_by_id_persona(self, id, nuevoNombre, nuevoApellido, nuevoCorreo, nuevoCelular):
+
+        print("CUIDADITO!!!!!!!!!!!!")
+        print("DANGEROUS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
+        d = dt[8]
+
+        query = ('UPDATE {} SET {}="{}",{}="{}",{}="{}",{}="{}" WHERE ({}="{}")'.format(dt,
+                                                                                        dtc[d][1],
+                                                                                        nuevoNombre,
+                                                                                        dtc[d][2],
+                                                                                        nuevoApellido,
+                                                                                        dtc[d][3],
+                                                                                        nuevoCorreo,
+                                                                                        dtc[d][4],
+                                                                                        nuevoCelular,
+                                                                                        dtc[d][0],
+                                                                                        id
+                                                                                        ))
+
+        print(self.update_by_id_persona.__name__+":", query)
 
         return self.ejecutar_query(query)
 
@@ -318,6 +503,40 @@ class conectar_base_datos():
 
         return self.ejecutar_query(query)
 
+    def get_by_id_platos(self, id):
+
+        d = dt[9]
+
+        query = ('SELECT {} FROM {} WHERE ({}="{}")'.format('*',
+                                                            d,
+                                                            dtc[d][0],
+                                                            id))
+
+        print(self.get_by_id_platos.__name__+":", query)
+
+        return self.ejecutar_query(query)
+
+    def update_all_by_id_platos(self, id, nuevoNombre, nuevoPrecioVentaPlato, nuevoPrecioCompraPlato, nuevoImagen):
+
+        d = dt[9]
+
+        query = ('UPDATE {} SET {}="{}",{}="{}",{}="{}",{}="{}" WHERE ({}="{}")'.format(d,
+                                                                                        dtc[d][1],
+                                                                                        nuevoNombre,
+                                                                                        dtc[d][2],
+                                                                                        nuevoPrecioVentaPlato,
+                                                                                        dtc[d][3],
+                                                                                        nuevoPrecioCompraPlato,
+                                                                                        dtc[d][4],
+                                                                                        nuevoImagen,
+                                                                                        dtc[d][0],
+                                                                                        id
+                                                                                        ))
+
+        print(self.update_all_by_id_platos.__name__+":", query)
+
+        return self.ejecutar_query(query)
+
     # ----------------- PRODUCTOS ----------------- #
 
     def get_all_productos(self):
@@ -328,6 +547,50 @@ class conectar_base_datos():
                                             d))
 
         print(self.get_all_productos.__name__+":", query)
+
+        return self.ejecutar_query(query)
+
+    def get_by_id_productos(self, id):
+
+        d = dt[10]
+
+        query = ('SELECT {} FROM {} WHERE ({}="{}")'.format('*',
+                                                            d,
+                                                            dtc[d][0],
+                                                            id))
+
+        print(self.get_by_id_productos.__name__+":", query)
+
+        return self.ejecutar_query(query)
+
+    def update_all_by_id_productos(self, nuevoProveedoresIdProveedor, nuevoCodigoBarrasProducto, nuevoNombreProducto, nuevoDescripcionProducto, nuevoCantidadEnvasesProducto, nuevoCantidadPorEnvaseProducto, nuevoUnidadProducto, nuevoPrecioProducto, nuevoImagenProducto):
+
+        d = dt[10]
+
+        query = ('UPDATE {} SET {}="{}",{}="{}",{}="{}",{}="{}",{}="{}",{}="{}",{}="{}",{}="{}",{}="{}" WHERE ({}="{}")'.format(d,
+                                                                                                                                dtc[d][1],
+                                                                                                                                nuevoProveedoresIdProveedor,
+                                                                                                                                dtc[d][2],
+                                                                                                                                nuevoCodigoBarrasProducto,
+                                                                                                                                dtc[d][3],
+                                                                                                                                nuevoNombreProducto,
+                                                                                                                                dtc[d][4],
+                                                                                                                                nuevoDescripcionProducto,
+                                                                                                                                dtc[d][5],
+                                                                                                                                nuevoCantidadEnvasesProducto,
+                                                                                                                                dtc[d][6],
+                                                                                                                                nuevoCantidadPorEnvaseProducto,
+                                                                                                                                dtc[d][7],
+                                                                                                                                nuevoUnidadProducto,
+                                                                                                                                dtc[d][8],
+                                                                                                                                nuevoPrecioProducto,
+                                                                                                                                dtc[d][9],
+                                                                                                                                nuevoImagenProducto,
+                                                                                                                                dtc[d][0],
+                                                                                                                                id
+                                                                                                                                ))
+
+        print(self.update_all_by_id_productos.__name__+":", query)
 
         return self.ejecutar_query(query)
 
@@ -344,6 +607,37 @@ class conectar_base_datos():
 
         return self.ejecutar_query(query)
 
+    def get_by_id_proveedores(self, id):
+
+        d = dt[11]
+
+        query = ('SELECT {} FROM {} WHERE ({}="{}")'.format('*',
+                                                            d,
+                                                            dtc[d][0],
+                                                            id
+                                                            ))
+
+        print(self.get_by_id_proveedores.__name__+":", query)
+
+        return self.ejecutar_query(query)
+
+    def update_all_by_id_proveedores(self, id, nuevoEmpresasIdEmpresa, nuevoNombreClaveProveedores):
+
+        d = dt[11]
+
+        query = ('UPDATE {} SET {}="{}",{}="{}" WHERE ({}="{}")'.format(d,
+                                                                        dtc[d][1],
+                                                                        nuevoEmpresasIdEmpresa,
+                                                                        dtc[d][2],
+                                                                        nuevoNombreClaveProveedores,
+                                                                        dtc[d][0],
+                                                                        id
+                                                                        ))
+
+        print(self.update_all_by_id_proveedores.__name__+":", query)
+
+        return self.ejecutar_query(query)
+
     # ----------------- TRANSACCIONES ----------------- #
 
     def get_all_transacciones(self):
@@ -357,13 +651,45 @@ class conectar_base_datos():
 
         return self.ejecutar_query(query)
 
+    def get_by_id_transacciones(self, id):
+
+        d = dt[12]
+
+        query = ('SELECT {} FROM {} WHERE ({}="{}")'.format('*',
+                                                            d,
+                                                            dtc[d][0],
+                                                            id))
+
+        print(self.get_by_id_transacciones.__name__+":", query)
+
+        return self.ejecutar_query(query)
+
+    def update_all_by_id_transacciones(self, id, nuevoClientesIdCliente, nuevoTipoFLujoTransaccion, nuevoMontoTransaccion):
+
+        d = dt[12]
+
+        query = ('UPDATE {} SET {}="{}" WHERE ({}="{}")'.format(d,
+                                                                dtc[d][1],
+                                                                nuevoClientesIdCliente,
+                                                                dtc[d][2],
+                                                                nuevoTipoFLujoTransaccion,
+                                                                dtc[d][3],
+                                                                nuevoMontoTransaccion,
+                                                                dtc[d][0],
+                                                                id,
+                                                                ))
+
+        print(self.update_all_by_id_transacciones.__name__+":", query)
+
+        return self.ejecutar_query(query)
+
     # ----------------- USUARIOS ----------------- #
 
     def get_all_usuarios(self):
 
         return ("Como esperas que te pase toda la lista de usuario, kbron")
 
-    # ----------------- VENTAS BODEGA ----------------- #    
+    # ----------------- VENTAS BODEGA ----------------- #
 
     def get_all_ventas_bodega(self):
 
@@ -376,7 +702,21 @@ class conectar_base_datos():
 
         return self.ejecutar_query(query)
 
-    # ----------------- VENTAS RESTAURANTE ----------------- #    
+    def get_by_id_ventas_bodega(self):
+
+        d = dt[14]
+
+        query = ('SELECT {} FROM {} WHERE ({}="{}")'.format('*',
+                                                            d,
+                                                            dtc[d][0],
+                                                            id
+                                                            ))
+
+        print(self.get_by_id_ventas_bodega.__name__+":", query)
+
+        return self.ejecutar_query(query)
+
+    # ----------------- VENTAS RESTAURANTE ----------------- #
 
     def get_all_ventas_restaurante(self):
 
@@ -389,15 +729,32 @@ class conectar_base_datos():
 
         return self.ejecutar_query(query)
 
-    # ----------------- PASTE HERE NEW TABLES ----------------- #    
+    def get_by_id_ventas_restaurante(self, id):
+
+        d = dt[15]
+
+        query = ('SELECT {} FROM {} WHERE ({}="{}")'.format('*',
+                                                            d,
+                                                            dtc[d][0],
+                                                            id
+                                                            ))
+
+        print(self.get_by_id_ventas_restaurante.__name__+":", query)
+
+        return self.ejecutar_query(query)
+
+    # ----------------- PASTE HERE NEW TABLES ----------------- #
 
 
 if __name__ == "__main__":
 
-    # Run your query examples here
-    # Follow the structure like in the lines below
-    # respuesta = conectar_base_datos().get_all_transacciones()
+    #####################################################
+    #                       GOD                         #
+    #           Run your query examples here            #
+    #    Follow the structure like in the lines below   #
+    #####################################################
+
+    # respuesta = conectar_base_datos().get_all_productos()
     # print(respuesta)
 
-    
     pass

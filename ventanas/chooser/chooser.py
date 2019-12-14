@@ -59,7 +59,7 @@ class Ventana_chooser(BoxLayout):
         self.parent.parent.current='ventana_controlador_ventas'
 
     def iniciar_administrador(self):
-        pass
+        self.parent.parent.current='ventana_admin_modificar'
 
 class controlador(App):
     

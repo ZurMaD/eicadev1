@@ -106,12 +106,13 @@ class gestionar_ventanas(BoxLayout):
         super().__init__(**kwargs)
 
         self.ids.ventana1.add_widget(self.login_widget)
-        self.ids.ventana2.add_widget(self.ventas_widget)
-        self.ids.ventana3.add_widget(self.admin_widget)
-        self.ids.ventana4.add_widget(self.chooser_widget)
+        self.ids.ventana2.add_widget(self.chooser_widget)
+        self.ids.ventana3.add_widget(self.ventas_widget)
+        self.ids.ventana4.add_widget(self.admin_widget)
 
 
 class main(App):
+
     theme_cls = ThemeManager()  # Using kivymd is necessary
     theme_cls.primary_palette = 'BlueGray'  # same
 
