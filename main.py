@@ -36,45 +36,30 @@ version_eica = "1.0.003"
 
 try:
     # KIVY ----------------------------------------------
-    import kivy
-    from kivy.app import App
-    # Corremos la version de kivy
-    kivy.require("1.11.1")
-    # Los labels
-    from kivy.uix.label import Label
-    # Para el orden de los labels
-    from kivy.uix.gridlayout import GridLayout
-    # Para los textos
-    from kivy.uix.textinput import TextInput
-    # Para las entradas de texto
-    from kivy.uix.button import Button
     # Para realizar estilos a la pantalla
     from kivy.uix.screenmanager import ScreenManager, Screen
-    # Para el scheduler
-    from kivy.clock import Clock
     # Para poner botones de mas de 2
     from kivy.uix.boxlayout import BoxLayout
     # Para los archivos .kv
     from kivy.lang.builder import Builder
     # Para las pantallas
     from kivy.uix.widget import Widget
-    # Cambiar tamaños dinamicamente
-    from kivy.uix.floatlayout import FloatLayout
+    # Factory
+    from kivy.factory import Factory
 
     # KIVY MD  ----------------------------------------------
     # Barra de navegación
     # Para botones interactivos
-    from kivy.factory import Factory
+    
     from kivymd.theming import ThemeManager
     from kivymd.app import MDApp
 
     # LOCAL FYLES - WINDOWS ----------------------------------
-    # VENTANAS
+    # Ventanas (Screens)
     from ventanas.login2.login import Ventana_login
     from ventanas.chooser.chooser import Ventana_chooser
     from ventanas.controlador.controlador import Ventana_ventas
     from ventanas.admin.admin import Ventana_admin
-
 
     print("[  MAIN  ][ LIBRERIAS ]: Se completaron todas correctamente.")
 
@@ -95,7 +80,7 @@ class Gestionar_ventanas(BoxLayout):
         widget_ventas = Ventana_ventas()
         widget_admin = Ventana_admin()
 
-        # Add screnss and windows here
+        # Add screns to windows here
         self.ids.ventana1.add_widget(widget_login)
         self.ids.ventana2.add_widget(widget_chooser)
         self.ids.ventana3.add_widget(widget_ventas)
@@ -112,7 +97,7 @@ class main(MDApp):
     def build(self):
         return Gestionar_ventanas()
 
-
+# NOT NEEDED BUILDER IN THE MAIN FILE
 # try:
 #     Builder.load_file("main.kv")
 # except Exception as e:
