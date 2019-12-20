@@ -1,5 +1,9 @@
 #!/bin/sh
 
+sudo apt-get install python3-pip
+sudo apt-get install cython3 python3-dev
+sudo apt-get install libsdl2-dev libsdl2-ttf-dev libsdl2-image-dev libsdl2-mixer-dev
+
 sudo python3 -m pip install -U pip
 
 sudo pip3 install mysql-connector

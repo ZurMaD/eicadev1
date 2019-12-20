@@ -20,19 +20,7 @@ https://trello.com/b/xdE3hSr0/eica
 
 """
 
-version_eica = "1.0.003"
-# Install python 3.7
-# pip install mysql-connector
-# pip install kivy
-# #http://bit.ly/2pZQzYd
-
-# pip install pandas
-# pip install numpy
-# pip install bcrypt
-# pip install matplotlib
-
-# For navigation bar
-# pip3 install kivymd
+version_eica = "1.0.004"
 
 try:
     # KIVY ----------------------------------------------
