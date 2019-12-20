@@ -9,3 +9,7 @@ Este software está dedicado a el control de inventarios de restaurantes, tenien
 Beneficios: 
 - Funciona en Windows, Android, iOs.
 - Material design.
+
+
+Video
+https://youtu.be/JgdjrzbRQ-o
