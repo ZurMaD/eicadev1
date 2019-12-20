@@ -1,4 +1,11 @@
-# eicadev1
- v0.1.0
+# Sistema de control de inventario
 
- New version for this thinks
+Alpha
+
+Version actual: v1.0.004 b3
+
+Este software está dedicado a el control de inventarios de restaurantes, teniendo como entrada los ingredientes de platos y de salida la venta de platos compuestos por cierta cantidad de ingredientes.
+
+Beneficios: 
+- Funciona en Windows, Android, iOs.
+- Material design.
