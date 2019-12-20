@@ -8,9 +8,11 @@ try:
     from mysql.connector import errorcode
     from mysql.connector import pooling
 
+    print("[  UTILS  ][ DATABASE ]: Database")
+
 except Exception as e:
 
-    print('[ DATABASE.PY ] Error:', e)
+    print('[  UTILS  ][ DATABASE ] Error:', e)
 
 
 credenciales = {'user': 'pc1',
@@ -107,7 +109,8 @@ database_tables_content = {'restaurante.clientes': {0: 'id_cliente',
                                                   1: 'nombre_plato',
                                                   2: 'precio_venta_plato',
                                                   3: 'precio_compra_plato',
-                                                  4: 'imagen_plato_FALTA'
+                                                  4: 'tipo_plato',
+                                                  5: 'imagen_plato_FALTA',
                                                   },
                            'restaurante.productos': {0: 'id_producto',
                                                      1: 'proveedores_id_proveedor',
@@ -486,7 +489,7 @@ class conectar_base_datos():
                                                                                         id
                                                                                         ))
 
-        print(self.update_by_id_persona.__name__+":", query)
+        print(self.update_all_by_id_persona.__name__+":", query)
 
         return self.ejecutar_query(query)
 
@@ -516,11 +519,11 @@ class conectar_base_datos():
 
         return self.ejecutar_query(query)
 
-    def update_all_by_id_platos(self, id, nuevoNombre, nuevoPrecioVentaPlato, nuevoPrecioCompraPlato, nuevoImagen):
+    def update_all_by_id_platos(self, id, nuevoNombre, nuevoPrecioVentaPlato, nuevoPrecioCompraPlato, nuevoTipoPlato, nuevoImagen):
 
         d = dt[9]
 
-        query = ('UPDATE {} SET {}="{}",{}="{}",{}="{}",{}="{}" WHERE ({}="{}")'.format(d,
+        query = ('UPDATE {} SET {}="{}",{}="{}",{}="{}",{}="{}",{}="{}" WHERE ({}="{}")'.format(d,
                                                                                         dtc[d][1],
                                                                                         nuevoNombre,
                                                                                         dtc[d][2],
@@ -528,6 +531,8 @@ class conectar_base_datos():
                                                                                         dtc[d][3],
                                                                                         nuevoPrecioCompraPlato,
                                                                                         dtc[d][4],
+                                                                                        nuevoTipoPlato,
+                                                                                        dtc[d][5],
                                                                                         nuevoImagen,
                                                                                         dtc[d][0],
                                                                                         id
@@ -668,7 +673,7 @@ class conectar_base_datos():
 
         d = dt[12]
 
-        query = ('UPDATE {} SET {}="{}" WHERE ({}="{}")'.format(d,
+        query = ('UPDATE {} SET {}="{}",{}="{}",{}="{}" WHERE ({}="{}")'.format(d,
                                                                 dtc[d][1],
                                                                 nuevoClientesIdCliente,
                                                                 dtc[d][2],

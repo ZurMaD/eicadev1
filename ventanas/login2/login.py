@@ -45,6 +45,7 @@ try:
     # Para botones interactivos
     from kivy.factory import Factory
     from kivymd.theming import ThemeManager
+    from kivymd.app import MDApp
 
     # Read and write and other things
     import os
@@ -61,11 +62,11 @@ try:
     # Conectar base de datos
     from utils.database import conectar_base_datos
 
-    print("-------------------------------BYCRIPT--------------------")
+    # print("-------------------------------BYCRIPT--------------------")
     # Encriptación
     import bcrypt
 
-    print("LIBRERIAS: Se completaron todas correctamente.")
+    print("[  LOGIN  ][ LIBRERIAS ]: Se completaron todas correctamente.")
 
 except Exception as e:
 
@@ -95,22 +96,8 @@ class Ventana_login(BoxLayout):
 
     def iniciar_sesion(self):
 
-        print(self.iniciar_sesion.__name__, ': {}'.format("Inicializando"))
+        self.parent.parent.current = 'ventana_chooser'
 
-        # Get the texts
-        usuario = self.ids.usuario
-        contrasenha = self.ids.contrasenha
-        self.mensaje_login = self.ids.mensaje
-
-        u = usuario.text
-        c = contrasenha.text
-
-        print(self.iniciar_sesion.__name__,
-              ': usuario: {}, contraseña:{}'.format(u, c))
-
-        Clock.schedule_once(lambda dt: self.conectar(), 2)
-
-        print(self.iniciar_sesion.__name__, ': {}'.format("Finalizando"))
 
     def validar_texto(self, u, c):
         val = ((u != '')and(c != ''))
@@ -184,9 +171,12 @@ class Ventana_login(BoxLayout):
         print(self.conectar.__name__+": {}".format("Finalizando"))
 
 
-class login (App):
-    # http://bit.ly/2pOTIKD -- KIVY
-    theme_cls = ThemeManager()
+class login (MDApp):
+    
+    def __init__(self, **kwargs):
+        self.title = "Login"
+        self.theme_cls.primary_palette = "Blue"
+        super().__init__(**kwargs)
 
     def build(self):
         return Ventana_login()

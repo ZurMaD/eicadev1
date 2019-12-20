@@ -49,6 +49,7 @@ try:
     # KIVY MD  ----------------------------------------------
     # Barra de navegación
     from kivymd.theming import ThemeManager
+    from kivymd.app import MDApp
 
     # Read and write and other things ----------------------
     import os
@@ -73,7 +74,7 @@ try:
     # Abrir enlaces de ayuda  --------------------------------
     #import webbrowser
 
-    print("LIBRERIAS: Se completaron todas correctamente.")
+    print("[  CTRL  ][ LIBRERIAS ]: Se completaron todas correctamente.")
 
 except Exception as e:
 
@@ -219,12 +220,12 @@ class Ventana_ventas(BoxLayout):
         print(self.cerrar_sesion.__name__+": Finalizado")
 
 
-class controlador(App):
+class controlador(MDApp):
 
-    # NavBar
-    theme_cls = ThemeManager()
-    # http://bit.ly/2PzQAga
-    # logos http://bit.ly/36sSPaT
+    def __init__(self, **kwargs):
+        self.title = "Controlador"
+        self.theme_cls.primary_palette = "Blue"
+        super().__init__(**kwargs)
 
     def build(self):
         return Ventana_ventas()

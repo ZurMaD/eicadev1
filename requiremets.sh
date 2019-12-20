@@ -1,0 +1,11 @@
+#!/bin/sh
+
+sudo python3 -m pip install -U pip
+
+sudo pip3 install mysql-connector
+sudo pip3 install kivy==1.11.1
+sudo pip3 install kivymd==0.102.1
+sudo pip3 install pandas
+sudo pip3 install numpy
+sudo pip3 install bcrypt
+sudo pip3 install matplotlib

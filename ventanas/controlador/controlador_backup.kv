@@ -1,0 +1,58 @@
+#:kivy 1.11.1
+
+#:import hex kivy.utils.get_color_from_hex
+#:set color_black hex('#000000')
+#:set color_shadow [0, 0, 0, .2980392156862745]
+#:set color_no_shadow [0, 0, 0, .2990392156862745]
+#:set color_lilac [.14058823529411765, .14058823529411765, .14901960784313725, 0.9]
+#:set color_white [1,1,1,1]
+#:set color_matplotlib [0,0,0,0.259565544885]
+#:set color_matplotlib2 [0,0,0,0.059565544885]
+
+<FlatButton@ButtonBehavior+Label>:
+    font_size:14
+
+<Ventana_ventas>:
+    id: ventana_inicio
+    orientation:'vertical'
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+    NavigationLayout:
+        MDNavigationDrawer:
+            #http://bit.ly/2PzQAga
+            #logos http://bit.ly/36sSPaT
+            id: navegador
+            side_panel_width:0.2*self.width # side available
+            drawer_logo: "assets/img/controlador/user.jpg"
+            NavigationDrawerSubheader:
+                id:info_usuario
+                text:'.'
+            NavigationDrawerIconButton:
+                icon: 'lock'
+                text:"Ingresar ventas"
+                on_release:screen_manager.current='screen1'
+            NavigationDrawerIconButton:
+                icon: 'lock'
+                text:"Ingresar compras"
+                on_release:screen_manager.current='screen2'
+            NavigationDrawerIconButton:
+                icon: 'lock'
+                text:"Reportes"
+                on_release:screen_manager.current='screen3'
+            # NavigationDrawerIconButton:
+            #     icon: 'lock'
+            #     text:"Ingresar compras"
+            #     on_release:print("4")                                
+            NavigationDrawerIconButton:
+                icon: 'logout-variant'
+                text: 'Cerrar sesión'
+                on_release:root.cerrar_sesion()
+ 
+        BoxLayout:
+            id:cuerpo
+            orientation:'vertical'

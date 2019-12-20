@@ -1,6 +1,24 @@
 #:kivy 1.11.1
-<FlatButton@ButtonBehavior+Label>:
-    font_size:14
+
+#:import hex kivy.utils.get_color_from_hex
+
+#:set color_black hex('#000000')
+#:set color_shadow [0, 0, 0, .2980392156862745]
+#:set color_no_shadow [0, 0, 0, .2990392156862745]
+#:set color_lilac [.14058823529411765, .14058823529411765, .14901960784313725, 0.9]
+#:set color_white [1,1,1,1]
+#:set color_matplotlib [0,0,0,0.259565544885]
+#:set color_matplotlib2 [0,0,0,0.059565544885]
+
+<SelectableLabel>:
+    # Draw a background to indicate selection
+    canvas.before:
+        Color:
+            rgba: (color_black) if self.selected else color_lilac
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
 
 <Ventana_admin>:
     id:ventana_main
@@ -12,7 +30,6 @@
             size:self.size
             pos:self.pos
     NavigationLayout:
-
         MDNavigationDrawer:
             #http://bit.ly/2PzQAga
             #logos http://bit.ly/36sSPaT
@@ -24,12 +41,48 @@
                 text: "Administrador 1    01/11/19"
             NavigationDrawerIconButton:
                 icon: 'lock'
-                text:"Ventana 1"
-                on_release:print("1")
+                text:"Modificar"
+                on_release:screen_manager.current='screen1'
             NavigationDrawerIconButton:
                 icon: 'lock'
                 text:"Ventana 2"
-                on_release:print("2")
+                on_release:screen_manager.current='screen2'
+            NavigationDrawerIconButton:
+                icon: 'lock'
+                text:"Ventana 3"
+                # on_release:screen_manager.current='screen2'
+            NavigationDrawerIconButton:
+                icon: 'lock'
+                text:"Ventana 4"
+                # on_release:screen_manager.current='screen2'
+            NavigationDrawerIconButton:
+                icon: 'lock'
+                text:"Ventana 5"
+                # on_release:screen_manager.current='screen2'
+            NavigationDrawerIconButton:
+                icon: 'lock'
+                text:"Ventana 6"
+                # on_release:screen_manager.current='screen2'
+            NavigationDrawerIconButton:
+                icon: 'lock'
+                text:"Ventana 7"
+                # on_release:screen_manager.current='screen2'
+            NavigationDrawerIconButton:
+                icon: 'lock'
+                text:"Ventana 8"
+                # on_release:screen_manager.current='screen2'
+            NavigationDrawerIconButton:
+                icon: 'lock'
+                text:"Ventana 9"
+                # on_release:screen_manager.current='screen2'
+            NavigationDrawerIconButton:
+                icon: 'lock'
+                text:"Ventana 10"
+                # on_release:screen_manager.current='screen2'
+            NavigationDrawerIconButton:
+                icon: 'lock'
+                text:"Ventana 11"
+                # on_release:screen_manager.current='screen2'                
             NavigationDrawerIconButton:
                 icon: 'logout-variant'
                 text: 'Cerrar sesión'
@@ -59,16 +112,94 @@
 
                 BoxLayout:
                     id: contenido_ventana
-                    orientation:'vertical'
-                    size_hint_x:0.8
-                    spacing:5
-                    canvas.before:
-                        Color:
-                            rgba:(1,1,1,1)
-                        Rectangle:
-                            size:self.size
-                            pos:self.pos                 
-                
+                    ScreenManager:
+                        id:screen_manager
+                        Screen:
+                            name:'screen1'
+                            BoxLayout:
+                                orientation:'vertical'
+                                canvas.before:
+                                    Color:
+                                        rgba: (1,1,1,1)
+                                    Rectangle:
+                                        size: self.size
+                                        pos: self.pos
+                                BoxLayout:
+                                    size_hint_y:None
+                                    height: '24dp'
+                                    BoxLayout:
+                                        size_hint_x:0.3
+                                        Label:
+                                            text:'Tipo de plato:'
+                                            color:color_black
+                                    
+                                    BoxLayout:
+                                        size_hint_x:0.7                                     
+                                        MDDropDownItem:
+                                            items: ['A','B','C','D','E']
+                                            dropdown_bg: [0.75, 0.85, 0.85, 0.95]
+                                
+                                BoxLayout:
+                                    size_hint_y:None
+                                    height: '24dp'
+                                    BoxLayout:
+                                        size_hint_x:0.3
+                                        Label:
+                                            text:'Nombre de plato:'
+                                            color:color_black
+                                    BoxLayout:
+                                        size_hint_x:0.7
+                                        MDDropDownItem:
+                                            id: dropdown_item
+                                            # items: app.items
+                                            items: ['1','2','3','4','5']
+                                            dropdown_bg: [0.75, 0.85, 0.85, 0.95]
+                                BoxLayout:
+                                    size_hint_y:None
+                                    height: '24dp'
+                                    Label:
+                                        size_hint_x:0.5
+                                        text:'Nombre de plato:'
+                                        bold:True
+                                        color:color_black
+                                    Label:
+                                        size_hint_x:0.5
+                                        text:'Seleccione un nombre'
+                                        bold:True
+                                        color:color_black
+
+                                BoxLayout:
+                                    size_hint_y:None
+                                    height: '24dp'
+                                    Label:
+                                        size_hint_x:0.2
+                                        text:'Ingredientes'
+                                        bold:True
+                                        color:color_black
+                                    
+
+
+
+                                BoxLayout:
+                                    id:tabla_por_plato
+                                    RV:
+                                        viewclass: 'SelectableLabel'
+                                        SelectableRecycleGridLayout:
+                                            default_size: None, dp(20)
+                                            default_size_hint: 1, None
+                                            size_hint_y: None
+                                            height: self.minimum_height
+                                            orientation: 'vertical'
+                                            multiselect: False
+                                            touch_multiselect: False
+                                            cols: 8
+                                            color: color_shadow
+                        Screen:
+                            name:'screen2'
+                            
+                        Screen:
+                            name:'screen3'
+                            
             BoxLayout:
                 id: footer
                 size_hint_y:None

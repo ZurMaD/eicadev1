@@ -10,9 +10,9 @@ Se usa Mysql en la nube, las credenciales están más abajo
 
 Autor:              Pablo Díaz
 Github:             github.com/zurmad
-Correo:             pablo.diazv@pucp.edu.pe
-Ult. Modificacion:  22/11/19
-Versión:            1.0.003
+Correo:             pablo.diazva@pucp.edu.pe
+Ult. Modificacion:  20/12/19
+Versión:            1.0.004
 
 
 Los cambios se modifican en:
@@ -32,11 +32,10 @@ version_eica = "1.0.003"
 # pip install matplotlib
 
 # For navigation bar
-# pip3 install kibymd
-
+# pip3 install kivymd
 
 try:
-    # Generales
+    # KIVY ----------------------------------------------
     import kivy
     from kivy.app import App
     # Corremos la version de kivy
@@ -62,63 +61,63 @@ try:
     # Cambiar tamaños dinamicamente
     from kivy.uix.floatlayout import FloatLayout
 
+    # KIVY MD  ----------------------------------------------
+    # Barra de navegación
     # Para botones interactivos
     from kivy.factory import Factory
     from kivymd.theming import ThemeManager
+    from kivymd.app import MDApp
 
-    # Read and write and other things
-    import os
-    import sys
-    # Para archivos de diseño
-    from os.path import abspath, dirname, join
-
-    # Conneccion
-    import mysql.connector
-    from mysql.connector import (connection)
-    from mysql.connector import errorcode
-    from mysql.connector import pooling
-
-    # Local py files
+    # LOCAL FYLES - WINDOWS ----------------------------------
     # VENTANAS
     from ventanas.login2.login import Ventana_login
+    from ventanas.chooser.chooser import Ventana_chooser
     from ventanas.controlador.controlador import Ventana_ventas
     from ventanas.admin.admin import Ventana_admin
-    from ventanas.chooser.chooser import Ventana_chooser
 
-    print("LIBRERIAS: Se completaron todas correctamente.")
+
+    print("[  MAIN  ][ LIBRERIAS ]: Se completaron todas correctamente.")
 
 except Exception as e:
 
-    print("-Error:", e)
+    print("[  MAIN  ][ LIBRERIAS ]:", e)
 
 
-class gestionar_ventanas(BoxLayout):
-
-    # Add screens to main
-    # Add screnss and windows here
-    login_widget = Ventana_login()
-    ventas_widget = Ventana_ventas()
-    admin_widget = Ventana_admin()
-    chooser_widget = Ventana_chooser()
+class Gestionar_ventanas(BoxLayout):
 
     def __init__(self, **kwargs):
 
         super().__init__(**kwargs)
+        
+        # Add screens to main
+        widget_login = Ventana_login()
+        widget_chooser = Ventana_chooser()
+        widget_ventas = Ventana_ventas()
+        widget_admin = Ventana_admin()
 
-        self.ids.ventana1.add_widget(self.login_widget)
-        self.ids.ventana2.add_widget(self.chooser_widget)
-        self.ids.ventana3.add_widget(self.ventas_widget)
-        self.ids.ventana4.add_widget(self.admin_widget)
+        # Add screnss and windows here
+        self.ids.ventana1.add_widget(widget_login)
+        self.ids.ventana2.add_widget(widget_chooser)
+        self.ids.ventana3.add_widget(widget_ventas)
+        self.ids.ventana4.add_widget(widget_admin)
 
 
-class main(App):
+class main(MDApp):
 
-    theme_cls = ThemeManager()  # Using kivymd is necessary
-    theme_cls.primary_palette = 'BlueGray'  # same
+    def __init__(self, **kwargs):
+        self.title = "Inicio"
+        self.theme_cls.primary_palette = "Blue"
+        super().__init__(**kwargs)
 
     def build(self):
-        return gestionar_ventanas()
+        return Gestionar_ventanas()
 
+
+# try:
+#     Builder.load_file("main.kv")
+# except Exception as e:
+#     print(e)
 
 if __name__ == "__main__":
-    main().run()
+    aplicacion = main()
+    aplicacion.run()
