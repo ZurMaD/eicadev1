@@ -1,6 +1,6 @@
 # Sistema de control de inventario
 
-Alpha
+Se encuentra en desarrollo - Etapa Alpha
 
 Version actual: v1.0.004 b3
 
