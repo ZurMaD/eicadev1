@@ -59,6 +59,9 @@ try:
     from mysql.connector import errorcode
     from mysql.connector import pooling
 
+    # Array -------------------------------------------------
+    import numpy as np
+
     # Para archivos de diseño
     from os.path import abspath, dirname, join
 
@@ -150,6 +153,7 @@ class RV(RecycleView):
 
 class Ventana_admin(BoxLayout):
     def __init__(self, **kwargs):
+        
         super().__init__(**kwargs)
 
     def tipo_plato_selected(self):
@@ -165,17 +169,24 @@ class Ventana_admin(BoxLayout):
         Esta función busca el plato por nombre
         y muestra en una tabla toda la información
         """
+        
+        # respuesta = conectar_base_datos().get_all_tipos_de_platos()
+        # self.ids.md_tipo_plato.items=respuesta
 
         print(self.busqueda_plato.__name__+": Inicializado")
         try:
             respuesta = conectar_base_datos().get_by_nombre_platos("no_borrar")
-            contenido=u+respuesta
+            row1=respuesta[0]
+            x=np.asarray(row1)
+            y=np.asarray(u)
+            contenido=np.concatenate((y,x),axis=None)
+            
             self.ids.tabla1.data=[{'text': str(x)} for x in contenido]
 
             print(respuesta)
         except Exception as e:
             #self.mensaje_login.text = str(e)
-            print(self.busqueda_plato.__name__+e)
+            print(self.busqueda_plato.__name__,e)
 
         print(self.busqueda_plato.__name__+": Finalizado")        
 

@@ -532,6 +532,19 @@ class conectar_base_datos():
 
         return self.ejecutar_query(query)    
 
+    def get_all_tipos_de_platos(self):
+
+        d = dt[9]
+
+        query = ('SELECT {} FROM {} GROUP BY {}'.format(dtc[d][4],
+                                                        d,
+                                                        dtc[d][4]
+                                                        ))
+
+        print(self.get_all_tipos_de_platos.__name__+":", query)
+
+        return self.ejecutar_query(query)   
+
 
     def update_all_by_id_platos(self, id, nuevoNombre, nuevoPrecioVentaPlato, nuevoPrecioCompraPlato, nuevoTipoPlato, nuevoImagen):
 
