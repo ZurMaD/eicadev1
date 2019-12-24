@@ -136,9 +136,8 @@
                                     BoxLayout:
                                         size_hint_x:0.7                                     
                                         MDDropDownItem:
-                                            items: ['A','B','C','D','E']
+                                            items: ['A']
                                             dropdown_bg: [0.75, 0.85, 0.85, 0.95]
-                                
                                 BoxLayout:
                                     size_hint_y:None
                                     height: '24dp'
@@ -150,10 +149,14 @@
                                     BoxLayout:
                                         size_hint_x:0.7
                                         MDDropDownItem:
-                                            id: dropdown_item
-                                            # items: app.items
-                                            items: ['1','2','3','4','5']
+                                            items: ['A1']
                                             dropdown_bg: [0.75, 0.85, 0.85, 0.95]
+                                BoxLayout:
+                                    size_hint_y:None
+                                    height: '40dp'
+                                    MDFillRoundFlatButton:
+                                        text: "Buscar"
+                                        on_press:root.busqueda_plato()
                                 BoxLayout:
                                     size_hint_y:None
                                     height: '24dp'
@@ -177,12 +180,10 @@
                                         bold:True
                                         color:color_black
                                     
-
-
-
                                 BoxLayout:
                                     id:tabla_por_plato
                                     RV:
+                                        id:tabla1
                                         viewclass: 'SelectableLabel'
                                         SelectableRecycleGridLayout:
                                             default_size: None, dp(20)

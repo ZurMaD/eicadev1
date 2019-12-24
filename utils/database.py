@@ -519,6 +519,20 @@ class conectar_base_datos():
 
         return self.ejecutar_query(query)
 
+    def get_by_nombre_platos(self, nombre_plato):
+
+        d = dt[9]
+
+        query = ('SELECT {} FROM {} WHERE ({}="{}")'.format('*',
+                                                            d,
+                                                            dtc[d][1],
+                                                            nombre_plato))
+
+        print(self.get_by_nombre_platos.__name__+":", query)
+
+        return self.ejecutar_query(query)    
+
+
     def update_all_by_id_platos(self, id, nuevoNombre, nuevoPrecioVentaPlato, nuevoPrecioCompraPlato, nuevoTipoPlato, nuevoImagen):
 
         d = dt[9]
@@ -541,6 +555,8 @@ class conectar_base_datos():
         print(self.update_all_by_id_platos.__name__+":", query)
 
         return self.ejecutar_query(query)
+
+    
 
     # ----------------- PRODUCTOS ----------------- #
 

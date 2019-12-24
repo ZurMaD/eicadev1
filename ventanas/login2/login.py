@@ -96,6 +96,7 @@ class Ventana_login(BoxLayout):
 
     def iniciar_sesion(self):
 
+        # self.conectar()
         self.parent.parent.current = 'ventana_chooser'
 
 

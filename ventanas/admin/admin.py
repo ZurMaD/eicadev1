@@ -66,6 +66,9 @@ try:
     # Conectar base de datos / Scripts locales
     from utils.database import database_tables as dt
     from utils.database import database_tables_content as dtc
+    from utils.database import conectar_base_datos
+
+
 
     # Encriptación  ------------------------------------------
     # import bcrypt
@@ -149,6 +152,33 @@ class Ventana_admin(BoxLayout):
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
+    def tipo_plato_selected(self):
+
+        print(self.tipo_plato_selected.__name__+": Inicializado")
+
+        # Show nombre de platos dependiendo de categoría
+
+        print(self.tipo_plato_selected.__name__+": Finalizado")
+
+    def busqueda_plato(self):
+        """
+        Esta función busca el plato por nombre
+        y muestra en una tabla toda la información
+        """
+
+        print(self.busqueda_plato.__name__+": Inicializado")
+        try:
+            respuesta = conectar_base_datos().get_by_nombre_platos("no_borrar")
+            contenido=u+respuesta
+            self.ids.tabla1.data=[{'text': str(x)} for x in contenido]
+
+            print(respuesta)
+        except Exception as e:
+            #self.mensaje_login.text = str(e)
+            print(self.busqueda_plato.__name__+e)
+
+        print(self.busqueda_plato.__name__+": Finalizado")        
+
     def cerrar_sesion(self):
 
         print(self.cerrar_sesion.__name__+": Inicializado")
@@ -174,7 +204,6 @@ class admin(MDApp):
 
     def build(self):
         return Ventana_admin()
-
 
 try:
     Builder.load_file("ventanas/admin/admin.kv")

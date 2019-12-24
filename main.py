@@ -83,6 +83,7 @@ class main(MDApp):
         super().__init__(**kwargs)
 
     def build(self):
+        self.items = [f"Item {i}" for i in range(50)]
         return Gestionar_ventanas()
 
 # NOT NEEDED BUILDER IN THE MAIN FILE

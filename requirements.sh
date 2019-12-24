@@ -13,3 +13,7 @@ sudo pip3 install pandas
 sudo pip3 install numpy
 sudo pip3 install bcrypt
 sudo pip3 install matplotlib
+sudo pip3 install bcrypt
+
+sudo apt update
+sudo apt install xclip
