@@ -141,8 +141,13 @@ scripts_inicializar/
 # Maps
 cache/
 
+<<<<<<< Updated upstream
 # Images
 assets/
 
 # Obsolete
 obsolete/
+=======
+# APK
+bin/
+>>>>>>> Stashed changes
