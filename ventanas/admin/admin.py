@@ -148,6 +148,8 @@ class RV(RecycleView):
     def __init__(self, **kwargs):
         super(RV, self).__init__(**kwargs)
         self.data = [{'text': str(x)} for x in tabla_platos]
+    
+        
 ################################
 
 
@@ -156,18 +158,58 @@ class Ventana_admin(BoxLayout):
         
         super().__init__(**kwargs)
 
-    def tipo_plato_selected(self):
+    def md_tipo_plato_selected(self):
+        """
+        Esta función se ejecuta cuando el DROPDOWNITEM
+        tipo_plato es seleccionado.
+        """
+        print(self.md_tipo_plato_selected.__name__+": Inicializado")
 
-        print(self.tipo_plato_selected.__name__+": Inicializado")
+        if (self.ids.md_tipo_plato.items==['-']):
+            """
+            Se ejecuta en el primer intento
+            """
+            try:                
+                respuesta = conectar_base_datos().get_all_tipos_de_platos()
+                x2=[a for b in respuesta for a in b]
+                self.ids.md_tipo_plato.items=x2
+                                
+            except Exception as e:
+                print(self.md_tipo_plato_selected.__name__,e) 
+        else:
+            """
+            Se ejecuta todas las veces siguientes
+            Agrega la lista de platos que son de una categoría
+            """
+            try:                
+                tipo=self.ids.md_tipo_plato.current_item
+                respuesta2 = conectar_base_datos().get_nombres_platos_x_tipo_plato(tipo)
+                m=[str(a) for b in respuesta2 for a in b]
+                self.ids.md_nombre_plato.items=m
+                                
+            except Exception as e:
+                print(self.md_tipo_plato_selected.__name__,e)
+            
 
-        # Show nombre de platos dependiendo de categoría
+        print(self.md_tipo_plato_selected.__name__+": Finalizado")
 
-        print(self.tipo_plato_selected.__name__+": Finalizado")
+    def md_nombre_plato_selected(self):
+        """
+        Esta función se ejecuta cuando el DROPDOWNITEM
+        nombre_plato es seleccionado.
+        """
+        print(self.md_nombre_plato_selected.__name__+": Inicializado")
+
+        # Show nombre de platos
+
+        print(self.md_nombre_plato_selected.__name__+": Finalizado")
 
     def busqueda_plato(self):
         """
-        Esta función busca el plato por nombre
-        y muestra en una tabla toda la información
+        Esta función se ejecuta cuando el botón buscar
+        es seleccionado.
+        Entradas: DROPDOWNS
+        Salida: Nuevo RV (Tabla)
         """
         
         # respuesta = conectar_base_datos().get_all_tipos_de_platos()
@@ -175,11 +217,13 @@ class Ventana_admin(BoxLayout):
 
         print(self.busqueda_plato.__name__+": Inicializado")
         try:
-            respuesta = conectar_base_datos().get_by_nombre_platos("no_borrar")
-            row1=respuesta[0]
-            x=np.asarray(row1)
-            y=np.asarray(u)
-            contenido=np.concatenate((y,x),axis=None)
+            nombre_plato_seleccionado=self.ids.md_nombre_plato.current_item
+            respuesta = conectar_base_datos().get_by_nombre_platos(nombre_plato_seleccionado)
+            #[a for b in respuesta for a in b] convert tuples to array
+            x1=[a for b in respuesta for a in b]
+            x0=u
+            x2=x0+x1
+            contenido=np.concatenate(x2,axis=None)
             
             self.ids.tabla1.data=[{'text': str(x)} for x in contenido]
 
@@ -191,7 +235,10 @@ class Ventana_admin(BoxLayout):
         print(self.busqueda_plato.__name__+": Finalizado")        
 
     def cerrar_sesion(self):
-
+        """
+        Esta función regresa a la pantalla principal
+        """
+        
         print(self.cerrar_sesion.__name__+": Inicializado")
 
         self.parent.parent.current = "ventana_login"

@@ -546,6 +546,21 @@ class conectar_base_datos():
         return self.ejecutar_query(query)   
 
 
+    
+    def get_nombres_platos_x_tipo_plato(self,tipo_plato):
+        
+        d = dt[9]
+
+        query = ('SELECT {} FROM {} WHERE {}="{}"'.format(dtc[d][1],
+                                                        d,
+                                                        dtc[d][4],
+                                                        tipo_plato
+                                                        ))
+
+        print(self.get_nombres_platos_x_tipo_plato.__name__+":", query)
+
+        return self.ejecutar_query(query)  
+
     def update_all_by_id_platos(self, id, nuevoNombre, nuevoPrecioVentaPlato, nuevoPrecioCompraPlato, nuevoTipoPlato, nuevoImagen):
 
         d = dt[9]
