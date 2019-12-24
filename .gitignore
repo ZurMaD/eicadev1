@@ -141,13 +141,20 @@ scripts_inicializar/
 # Maps
 cache/
 
+<<<<<<< HEAD
 <<<<<<< Updated upstream
+=======
+>>>>>>> parent of 09d2f7b... 1.0.005 b1 - working
 # Images
 assets/
 
 # Obsolete
+<<<<<<< HEAD
 obsolete/
 =======
 # APK
 bin/
 >>>>>>> Stashed changes
+=======
+obsolete/
+>>>>>>> parent of 09d2f7b... 1.0.005 b1 - working
