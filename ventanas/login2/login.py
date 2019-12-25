@@ -1,4 +1,4 @@
-__autor__ = 'zurmad'
+__autor__ = "zurmad"
 
 # Install python 3.7
 # pip install mysql-connector
@@ -18,27 +18,37 @@ try:
     # Generales
     import kivy
     from kivy.app import App
+
     # Corremos la version de kivy
     kivy.require("1.11.1")
     # Los labels
     from kivy.uix.label import Label
+
     # Para el orden de los labels
     from kivy.uix.gridlayout import GridLayout
+
     # Para los textos
     from kivy.uix.textinput import TextInput
+
     # Para las entradas de texto
     from kivy.uix.button import Button
+
     # Para realizar estilos a la pantalla
     from kivy.uix.screenmanager import ScreenManager, Screen
+
     # Para el scheduler
     # http://bit.ly/36vNJL9
     from kivy.clock import Clock
+
     # Para poner botones de mas de 2
     from kivy.uix.boxlayout import BoxLayout
+
     # Para los archivos .kv
     from kivy.lang.builder import Builder
+
     # Para las pantallas
     from kivy.uix.widget import Widget
+
     # Cambiar tamaños dinamicamente
     from kivy.uix.floatlayout import FloatLayout
 
@@ -50,12 +60,13 @@ try:
     # Read and write and other things
     import os
     import sys
+
     # Para archivos de diseño
     from os.path import abspath, dirname, join
 
     # Conneccion
     import mysql.connector
-    from mysql.connector import (connection)
+    from mysql.connector import connection
     from mysql.connector import errorcode
     from mysql.connector import pooling
 
@@ -74,7 +85,6 @@ except Exception as e:
 
 
 class Ventana_login(BoxLayout):
-
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
@@ -92,16 +102,15 @@ class Ventana_login(BoxLayout):
         # and set icon of right button.
         field.password = not field.password
         field.focus = True
-        button.icon = 'eye' if button.icon == 'eye-off' else 'eye-off'
+        button.icon = "eye" if button.icon == "eye-off" else "eye-off"
 
     def iniciar_sesion(self):
 
         # self.conectar()
-        self.parent.parent.current = 'ventana_chooser'
-
+        self.parent.parent.current = "ventana_chooser"
 
     def validar_texto(self, u, c):
-        val = ((u != '')and(c != ''))
+        val = (u != "") and (c != "")
         return val
 
     def siguiente_pagina(self):
@@ -135,17 +144,17 @@ class Ventana_login(BoxLayout):
         u = usuario.text
         c = contrasenha.text
 
-        print(self.conectar.__name__+': {}'.format("Inicializando"))
+        print(self.conectar.__name__ + ": {}".format("Inicializando"))
 
         if self.validar_texto(u, c) == True:
 
-            self.mensaje_login.text = '[color=#00FF00]Cargando...[/color]'
+            self.mensaje_login.text = "[color=#00FF00]Cargando...[/color]"
 
             try:
-                respuesta = conectar_base_datos().get_by_user_contrasenha('elio')
-                print(self.conectar.__name__+":", respuesta)
+                respuesta = conectar_base_datos().get_by_user_contrasenha("elio")
+                print(self.conectar.__name__ + ":", respuesta)
                 # aplicacion.Ventana_inicio_gerencia.actualizar_texto("Bienvenido")
-                print(c.encode('utf-8'), respuesta[0][0])
+                print(c.encode("utf-8"), respuesta[0][0])
 
                 verification = True
                 # verification = self.check_password(c.encode('utf-8'), eval(respuesta[0][0]))
@@ -154,26 +163,27 @@ class Ventana_login(BoxLayout):
                     """
                     Aquí se ha verificado la sesión y se muestra la siguiente ventana
                     """
-                    print(self.conectar.__name__+": INICIO DE SESIÓN EXITOSO")
+                    print(self.conectar.__name__ + ": INICIO DE SESIÓN EXITOSO")
 
-                    self.parent.parent.current = 'ventana_chooser'
+                    self.parent.parent.current = "ventana_chooser"
 
                 else:
 
-                    print(self.conectar.__name__+": INICIO DE SESIÓN FALLIDO")
+                    print(self.conectar.__name__ + ": INICIO DE SESIÓN FALLIDO")
 
             except Exception as e:
                 self.mensaje_login.text = str(e)
-        #print(self.conectar.__name__+":", mensajes_global['MSG_4'])
+        # print(self.conectar.__name__+":", mensajes_global['MSG_4'])
         # aplicacion.screen_manager.current="Ventana_login"
         else:
-            self.mensaje_login.text = '[color=#FF0000] Usuario y/o contraseña incorrecto[/color]'
+            self.mensaje_login.text = (
+                "[color=#FF0000] Usuario y/o contraseña incorrecto[/color]"
+            )
 
-        print(self.conectar.__name__+": {}".format("Finalizando"))
+        print(self.conectar.__name__ + ": {}".format("Finalizando"))
 
 
-class login (MDApp):
-    
+class login(MDApp):
     def __init__(self, **kwargs):
         self.title = "Login"
         self.theme_cls.primary_palette = "Blue"

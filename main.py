@@ -1,4 +1,4 @@
-__autor__ = 'zurmad'
+__autor__ = "zurmad"
 
 version = """
 EICA CONTROL DE INVENTARIO
@@ -26,19 +26,23 @@ try:
     # KIVY ----------------------------------------------
     # Para realizar estilos a la pantalla
     from kivy.uix.screenmanager import ScreenManager, Screen
+
     # Para poner botones de mas de 2
     from kivy.uix.boxlayout import BoxLayout
+
     # Para los archivos .kv
     from kivy.lang.builder import Builder
+
     # Para las pantallas
     from kivy.uix.widget import Widget
+
     # Factory
     from kivy.factory import Factory
 
     # KIVY MD  ----------------------------------------------
     # Barra de navegación
     # Para botones interactivos
-    
+
     from kivymd.theming import ThemeManager
     from kivymd.app import MDApp
 
@@ -57,11 +61,11 @@ except Exception as e:
 
 
 class Gestionar_ventanas(BoxLayout):
-
+    
     def __init__(self, **kwargs):
 
         super().__init__(**kwargs)
-        
+
         # Add screens to main
         widget_login = Ventana_login()
         widget_chooser = Ventana_chooser()
@@ -76,15 +80,14 @@ class Gestionar_ventanas(BoxLayout):
 
 
 class main(MDApp):
-
     def __init__(self, **kwargs):
         self.title = "Inicio"
         self.theme_cls.primary_palette = "Blue"
         super().__init__(**kwargs)
 
     def build(self):
-        self.items = [f"Item {i}" for i in range(50)]
         return Gestionar_ventanas()
+
 
 # NOT NEEDED BUILDER IN THE MAIN FILE
 # try:

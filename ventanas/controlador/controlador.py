@@ -1,4 +1,4 @@
-__autor__ = 'zurmad'
+__autor__ = "zurmad"
 
 version = """
 EICA CONTROL DE INVENTARIO
@@ -23,26 +23,36 @@ try:
     # KIVY ----------------------------------------------
     import kivy
     from kivy.app import App
+
     # Corremos la version de kivy
     kivy.require("1.11.1")
     # Los labels
     from kivy.uix.label import Label
+
     # Para el orden de los labels
     from kivy.uix.gridlayout import GridLayout
+
     # Para los textos
     from kivy.uix.textinput import TextInput
+
     # Para las entradas de texto
     from kivy.uix.button import Button
+
     # Para realizar estilos a la pantalla
     from kivy.uix.screenmanager import ScreenManager, Screen
+
     # Para el scheduler
     from kivy.clock import Clock
+
     # Para poner botones de mas de 2
     from kivy.uix.boxlayout import BoxLayout
+
     # Para los archivos .kv
     from kivy.lang.builder import Builder
+
     # Para las pantallas
     from kivy.uix.widget import Widget
+
     # Cambiar tamaños dinamicamente
     from kivy.uix.floatlayout import FloatLayout
 
@@ -54,12 +64,13 @@ try:
     # Read and write and other things ----------------------
     import os
     import sys
+
     # Para archivos de diseño
     from os.path import abspath, dirname, join
 
     # Conneccion  --------------------------------------------
     import mysql.connector
-    from mysql.connector import (connection)
+    from mysql.connector import connection
     from mysql.connector import errorcode
     from mysql.connector import pooling
 
@@ -70,9 +81,8 @@ try:
     import numpy as np
     import matplotlib.pyplot as plt
 
-
     # Abrir enlaces de ayuda  --------------------------------
-    #import webbrowser
+    # import webbrowser
 
     print("[  CTRL  ][ LIBRERIAS ]: Se completaron todas correctamente.")
 
@@ -106,26 +116,24 @@ class Ventana_ventas(BoxLayout):
 
         info_us = self.ids.info_usuario
         dat = date.today()
-        info_us.text = ('Controlador     '+dat.strftime("%d/%m/%Y"))
+        info_us.text = "Controlador     " + dat.strftime("%d/%m/%Y")
 
     def actualizar_compras(self):
         codigo = self.ids.codigo_producto.text
         contenedor_productos = self.ids.productos
 
         if self.validacion_codigo():
-            detalles = BoxLayout(
-                size_hint_y=None, height=30, pos_hint={'top': 1})
+            detalles = BoxLayout(size_hint_y=None, height=30, pos_hint={"top": 1})
             contenedor_productos.add_widget(detalles)
 
-            code = Label(text=codigo, size_hint_x=.2, color=(.06, .45, .45, 1))
-            name = Label(text='Product One', size_hint_x=.3,
-                         color=(.06, .45, .45, 1))
-            qty = Label(text='1', size_hint_x=.1, color=(.06, .45, .45, 1))
-            disc = Label(text='0.00', size_hint_x=.1, color=(.06, .45, .45, 1))
-            price = Label(text='0.00', size_hint_x=.1,
-                          color=(.06, .45, .45, 1))
-            total = Label(text='0.00', size_hint_x=.2,
-                          color=(.06, .45, .45, 1))
+            code = Label(text=codigo, size_hint_x=0.2, color=(0.06, 0.45, 0.45, 1))
+            name = Label(
+                text="Product One", size_hint_x=0.3, color=(0.06, 0.45, 0.45, 1)
+            )
+            qty = Label(text="1", size_hint_x=0.1, color=(0.06, 0.45, 0.45, 1))
+            disc = Label(text="0.00", size_hint_x=0.1, color=(0.06, 0.45, 0.45, 1))
+            price = Label(text="0.00", size_hint_x=0.1, color=(0.06, 0.45, 0.45, 1))
+            total = Label(text="0.00", size_hint_x=0.2, color=(0.06, 0.45, 0.45, 1))
             detalles.add_widget(code)
             detalles.add_widget(name)
             detalles.add_widget(qty)
@@ -143,14 +151,19 @@ class Ventana_ventas(BoxLayout):
             # Actualizar resumen
             resumen_preview = self.ids.resumen
             temp_text = resumen_preview.text
-            _temp = temp_text.find('`')
+            _temp = temp_text.find("`")
 
-            resumen_venta = '`\n\nTotal\t\t\t\t\t\t\t\t0.00'
+            resumen_venta = "`\n\nTotal\t\t\t\t\t\t\t\t0.00"
             if _temp > 0:
                 temp_text = temp_text[:_temp]
 
-            resumen_preview.text = '\n'.join(
-                [temp_text, pname+'\t\tx'+pcantidad+'\t\t'+str(pprice), resumen_venta])
+            resumen_preview.text = "\n".join(
+                [
+                    temp_text,
+                    pname + "\t\tx" + pcantidad + "\t\t" + str(pprice),
+                    resumen_venta,
+                ]
+            )
 
     def validacion_codigo(self):
         """
@@ -163,19 +176,17 @@ class Ventana_ventas(BoxLayout):
         contenedor_productos = self.ids.productos2
 
         if self.validacion_codigo2():
-            detalles = BoxLayout(
-                size_hint_y=None, height=30, pos_hint={'top': 1})
+            detalles = BoxLayout(size_hint_y=None, height=30, pos_hint={"top": 1})
             contenedor_productos.add_widget(detalles)
 
-            code = Label(text=codigo, size_hint_x=.2, color=(.06, .45, .45, 1))
-            name = Label(text='Product One', size_hint_x=.3,
-                         color=(.06, .45, .45, 1))
-            qty = Label(text='1', size_hint_x=.1, color=(.06, .45, .45, 1))
-            disc = Label(text='0.00', size_hint_x=.1, color=(.06, .45, .45, 1))
-            price = Label(text='0.00', size_hint_x=.1,
-                          color=(.06, .45, .45, 1))
-            total = Label(text='0.00', size_hint_x=.2,
-                          color=(.06, .45, .45, 1))
+            code = Label(text=codigo, size_hint_x=0.2, color=(0.06, 0.45, 0.45, 1))
+            name = Label(
+                text="Product One", size_hint_x=0.3, color=(0.06, 0.45, 0.45, 1)
+            )
+            qty = Label(text="1", size_hint_x=0.1, color=(0.06, 0.45, 0.45, 1))
+            disc = Label(text="0.00", size_hint_x=0.1, color=(0.06, 0.45, 0.45, 1))
+            price = Label(text="0.00", size_hint_x=0.1, color=(0.06, 0.45, 0.45, 1))
+            total = Label(text="0.00", size_hint_x=0.2, color=(0.06, 0.45, 0.45, 1))
             detalles.add_widget(code)
             detalles.add_widget(name)
             detalles.add_widget(qty)
@@ -193,14 +204,19 @@ class Ventana_ventas(BoxLayout):
             # Actualizar resumen
             resumen_preview = self.ids.resumen2
             temp_text = resumen_preview.text
-            _temp = temp_text.find('`')
+            _temp = temp_text.find("`")
 
-            resumen_venta = '`\n\nTotal\t\t\t\t\t\t\t\t0.00'
+            resumen_venta = "`\n\nTotal\t\t\t\t\t\t\t\t0.00"
             if _temp > 0:
                 temp_text = temp_text[:_temp]
 
-            resumen_preview.text = '\n'.join(
-                [temp_text, pname+'\t\tx'+pcantidad+'\t\t'+str(pprice), resumen_venta])
+            resumen_preview.text = "\n".join(
+                [
+                    temp_text,
+                    pname + "\t\tx" + pcantidad + "\t\t" + str(pprice),
+                    resumen_venta,
+                ]
+            )
 
     def validacion_codigo2(self):
         """
@@ -213,15 +229,14 @@ class Ventana_ventas(BoxLayout):
         # webbrowser.open('http://www.google.com')
 
     def cerrar_sesion(self):
-        print(self.cerrar_sesion.__name__+": Inicializado")
+        print(self.cerrar_sesion.__name__ + ": Inicializado")
 
         self.parent.parent.current = "ventana_login"
 
-        print(self.cerrar_sesion.__name__+": Finalizado")
+        print(self.cerrar_sesion.__name__ + ": Finalizado")
 
 
 class controlador(MDApp):
-
     def __init__(self, **kwargs):
         self.title = "Controlador"
         self.theme_cls.primary_palette = "Blue"
@@ -229,6 +244,7 @@ class controlador(MDApp):
 
     def build(self):
         return Ventana_ventas()
+
 
 try:
     Builder.load_file("ventanas/controlador/controlador.kv")
