@@ -28,7 +28,7 @@ source.exclude_dirs = bin,ejemplos
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-version = 000006
+version = 1.0.006
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]
