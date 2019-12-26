@@ -7,28 +7,11 @@ https://trello.com/b/xdE3hSr0/eica
 
 try:
     # KIVY ----------------------------------------------
-    import kivy
-    from kivy.app import App
-
-    # Corremos la version de kivy
-    kivy.require("1.11.1")
-    # Los labels
+    # Labels
     from kivy.uix.label import Label
-
-    # Para el orden de los labels
-    from kivy.uix.gridlayout import GridLayout
-
-    # Para los textos
-    from kivy.uix.textinput import TextInput
-
-    # Para las entradas de texto
-    from kivy.uix.button import Button
 
     # Para realizar estilos a la pantalla
     from kivy.uix.screenmanager import ScreenManager, Screen
-
-    # Para el scheduler
-    from kivy.clock import Clock
 
     # Para poner botones de mas de 2
     from kivy.uix.boxlayout import BoxLayout
@@ -39,8 +22,8 @@ try:
     # Para las pantallas
     from kivy.uix.widget import Widget
 
-    # Cambiar tamaños dinamicamente
-    from kivy.uix.floatlayout import FloatLayout
+    # Factory
+    from kivy.factory import Factory
 
     # Para las tablas
     from kivy.uix.recycleview import RecycleView
@@ -55,7 +38,7 @@ try:
     # KIVY MD  ----------------------------------------------
     # Barra de navegación
     # Para botones interactivos
-    from kivy.factory import Factory
+
     from kivymd.theming import ThemeManager
     from kivymd.app import MDApp
 
@@ -118,9 +101,7 @@ tabla_platos = u + items
 ################################
 
 
-class SelectableRecycleGridLayout(
-    FocusBehavior, LayoutSelectionBehavior, RecycleGridLayout
-):
+class SelectableRecycleGridLayout(FocusBehavior, LayoutSelectionBehavior, RecycleGridLayout):
     """ Adds selection and focus behaviour to the view. """
 
     isfas = None
@@ -169,16 +150,12 @@ class Ventana_admin(BoxLayout):
         super().__init__(**kwargs)
 
     def md_selected_tipo_plato(self):
-        """
-        Esta función se ejecuta cuando el DROPDOWNITEM
-        tipo_plato es seleccionado.
-        """
+        # Esta función se ejecuta cuando el DROPDOWNITEM
+        # tipo_plato es seleccionado.
         print(self.md_selected_tipo_plato.__name__ + ": Inicializado")
 
-        if self.ids.md_tipo_plato.current_item == "-":
-            """
-            Se ejecuta en el primer intento
-            """
+        if self.ids.md_tipo_plato.items == ["-"]:
+            # Se ejecuta en el primer intento
             try:
                 respuesta = conectar_base_datos().get_all_tipos_de_platos()
                 x2 = [a for b in respuesta for a in b]
@@ -187,10 +164,8 @@ class Ventana_admin(BoxLayout):
             except Exception as e:
                 print(self.md_selected_tipo_plato.__name__, e)
         else:
-            """
-            Se ejecuta todas las veces siguientes
-            Agrega la lista de platos que son de una categoría
-            """
+            # Se ejecuta todas las veces siguientes
+            # Agrega la lista de platos que son de una categoría
             try:
                 tipo = self.ids.md_tipo_plato.current_item
                 respuesta2 = conectar_base_datos().get_nombres_platos_x_tipo_plato(tipo)
@@ -202,29 +177,19 @@ class Ventana_admin(BoxLayout):
 
         print(self.md_selected_tipo_plato.__name__ + ": Finalizado")
 
-    def md_nombre_plato_fc1(self):
-        """
-        Esta función se ejecuta cuando el DROPDOWNITEM
-        nombre_plato es seleccionado.
-        """
-        print(self.md_nombre_plato_fc1.__name__ + ": Inicializado")
-
+    def md_selected_nombre_plato(self):
+        # Esta función se ejecuta cuando el DROPDOWNITEM
+        # nombre_plato es seleccionado.
+        print(self.md_selected_nombre_plato.__name__ + ": Inicializado")
         # Show nombre de platos
-
-        print(self.md_nombre_plato_fc1.__name__ + ": Finalizado")
-
-        pass
+        print(self.md_selected_nombre_plato.__name__ + ": Finalizado")
 
     def busqueda_plato(self):
-        """
-        Esta función se ejecuta cuando el botón buscar
-        es seleccionado.
-        Entradas: DROPDOWNS
-        Salida: Nuevo RV (Tabla)
-        """
+        # Esta función se ejecuta cuando el botón buscar
+        # es seleccionado.
+        # Entradas: DROPDOWNS
+        # Salida: Nuevo RV (Tabla)
 
-        # respuesta = conectar_base_datos().get_all_tipos_de_platos()
-        # self.ids.md_tipo_plato.items=respuesta
 
         print(self.busqueda_plato.__name__ + ": Inicializado")
         try:

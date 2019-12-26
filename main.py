@@ -11,8 +11,8 @@ Se usa Mysql en la nube, las credenciales están más abajo
 Autor:              Pablo Díaz
 Github:             github.com/zurmad
 Correo:             pablo.diazva@pucp.edu.pe
-Ult. Modificacion:  20/12/19
-Versión:            1.0.004
+Ult. Modificacion:  25/12/19
+Versión:            1.0.006
 
 
 Los cambios se modifican en:
@@ -20,7 +20,6 @@ https://trello.com/b/xdE3hSr0/eica
 
 """
 
-version_eica = "1.0.004"
 
 try:
     # KIVY ----------------------------------------------
