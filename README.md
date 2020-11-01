@@ -1,5 +1,7 @@
 # Sistema de control de inventario
 
+Currently unmaintaned because KivyMD is still doing a lot of changes in their alpha version. I decided to move for android development to Flutter
+
 Se encuentra en desarrollo - Etapa Alpha
 
 Version actual: v1.0.004 b3
